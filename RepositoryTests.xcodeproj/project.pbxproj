@@ -27,6 +27,8 @@
 		3B00C592299F353F00C92E29 /* SingleEntityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C591299F353F00C92E29 /* SingleEntityListView.swift */; };
 		3B00C594299F35E200C92E29 /* MultipleEntitiesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C593299F35E200C92E29 /* MultipleEntitiesListView.swift */; };
 		3B00C596299F39EF00C92E29 /* OnePagedBooksListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C595299F39EF00C92E29 /* OnePagedBooksListView.swift */; };
+		3B00C598299F3A8500C92E29 /* PaginatedBooksRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C597299F3A8500C92E29 /* PaginatedBooksRepository.swift */; };
+		3B00C59A299F3C4C00C92E29 /* PaginatedBooksListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C599299F3C4C00C92E29 /* PaginatedBooksListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,8 @@
 		3B00C591299F353F00C92E29 /* SingleEntityListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleEntityListView.swift; sourceTree = "<group>"; };
 		3B00C593299F35E200C92E29 /* MultipleEntitiesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleEntitiesListView.swift; sourceTree = "<group>"; };
 		3B00C595299F39EF00C92E29 /* OnePagedBooksListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnePagedBooksListView.swift; sourceTree = "<group>"; };
+		3B00C597299F3A8500C92E29 /* PaginatedBooksRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedBooksRepository.swift; sourceTree = "<group>"; };
+		3B00C599299F3C4C00C92E29 /* PaginatedBooksListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedBooksListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,8 +227,8 @@
 		3B00C587299F327600C92E29 /* OnePagedBooksList */ = {
 			isa = PBXGroup;
 			children = (
-				3B00C58F299F332F00C92E29 /* OnePagedBooksRepository.swift */,
 				3B00C595299F39EF00C92E29 /* OnePagedBooksListView.swift */,
+				3B00C58F299F332F00C92E29 /* OnePagedBooksRepository.swift */,
 			);
 			path = OnePagedBooksList;
 			sourceTree = "<group>";
@@ -232,6 +236,8 @@
 		3B00C58A299F32AA00C92E29 /* PaginatedBooksList */ = {
 			isa = PBXGroup;
 			children = (
+				3B00C599299F3C4C00C92E29 /* PaginatedBooksListView.swift */,
+				3B00C597299F3A8500C92E29 /* PaginatedBooksRepository.swift */,
 			);
 			path = PaginatedBooksList;
 			sourceTree = "<group>";
@@ -248,8 +254,8 @@
 			children = (
 				3B00C591299F353F00C92E29 /* SingleEntityListView.swift */,
 				3B00C587299F327600C92E29 /* OnePagedBooksList */,
-				3B00C58B299F32BB00C92E29 /* SectionedBooksList */,
 				3B00C58A299F32AA00C92E29 /* PaginatedBooksList */,
+				3B00C58B299F32BB00C92E29 /* SectionedBooksList */,
 			);
 			path = SingleEntityList;
 			sourceTree = "<group>";
@@ -396,8 +402,10 @@
 				3B00C594299F35E200C92E29 /* MultipleEntitiesListView.swift in Sources */,
 				3B00C57F299F321200C92E29 /* SectionedListViewModel.swift in Sources */,
 				3B00C545299F31C200C92E29 /* ContentView.swift in Sources */,
+				3B00C598299F3A8500C92E29 /* PaginatedBooksRepository.swift in Sources */,
 				3B00C582299F321200C92E29 /* LoadingState.swift in Sources */,
 				3B00C57D299F321200C92E29 /* PaginationStrategy.swift in Sources */,
+				3B00C59A299F3C4C00C92E29 /* PaginatedBooksListView.swift in Sources */,
 				3B00C57C299F321200C92E29 /* LimitOffsetPaginationStrategy.swift in Sources */,
 				3B00C543299F31C200C92E29 /* RepositoryTestsApp.swift in Sources */,
 				3B00C596299F39EF00C92E29 /* OnePagedBooksListView.swift in Sources */,

@@ -27,7 +27,7 @@ struct SingleEntityListView: View {
             case 0:
                 OnePagedBooksListView()
             case 1:
-                EmptyView()
+                PaginatedBooksListView()
             default:
                 EmptyView()
             }

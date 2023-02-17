@@ -14,7 +14,7 @@ class PaginatedListViewModel<Repository: AnyPaginatedListRepository>: ListViewMo
     /// Refresh data
     override func refresh() async throws {
         repository.paginationStrategy.resetPagination()
-        try await super.reload()
+        try await reload()
     }
     
     /// Handle new data that just received
@@ -32,7 +32,10 @@ class PaginatedListViewModel<Repository: AnyPaginatedListRepository>: ListViewMo
     /// Fetch next records if pagination is enabled
     func fetchNext() async throws {
         // call request
-        try await super.request()
+        try await request()
+        
+        // move to next page
+        repository.paginationStrategy.moveToNextPage()
     }
     
 //    func updateFirstPage(onSuccessFilterNewData: (([ItemType]) -> [ItemType])? = nil) {

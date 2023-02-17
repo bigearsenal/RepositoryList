@@ -21,8 +21,15 @@ protocol AnyListRepository {
 }
 
 protocol AnyPaginatedListRepository: AnyListRepository {
+    associatedtype PS: PaginationStrategy
     /// Pagination strategy
-    var paginationStrategy: PaginationStrategy { get }
+    var paginationStrategy: PS { get }
+}
+
+extension AnyPaginatedListRepository {
+    func shouldFetch() -> Bool {
+        !paginationStrategy.isLastPageLoaded
+    }
 }
 
 //class ListRepository<ItemType: Hashable & Identifiable>: AnyListRepository {
