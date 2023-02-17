@@ -31,6 +31,7 @@
 		3B00C59A299F3C4C00C92E29 /* PaginatedBooksListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C599299F3C4C00C92E29 /* PaginatedBooksListView.swift */; };
 		3B00C59C299F615E00C92E29 /* SectionedBooksListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C59B299F615E00C92E29 /* SectionedBooksListView.swift */; };
 		3B00C59E299F617900C92E29 /* SectionedBooksListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C59D299F617900C92E29 /* SectionedBooksListViewModel.swift */; };
+		3B00C5A0299F73D100C92E29 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3B00C59F299F73D100C92E29 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		3B00C599299F3C4C00C92E29 /* PaginatedBooksListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedBooksListView.swift; sourceTree = "<group>"; };
 		3B00C59B299F615E00C92E29 /* SectionedBooksListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionedBooksListView.swift; sourceTree = "<group>"; };
 		3B00C59D299F617900C92E29 /* SectionedBooksListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionedBooksListViewModel.swift; sourceTree = "<group>"; };
+		3B00C59F299F73D100C92E29 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 		3B00C541299F31C200C92E29 /* RepositoryTests */ = {
 			isa = PBXGroup;
 			children = (
+				3B00C59F299F73D100C92E29 /* README.md */,
 				3B00C542299F31C200C92E29 /* RepositoryTestsApp.swift */,
 				3B00C544299F31C200C92E29 /* ContentView.swift */,
 				3B00C58D299F32D100C92E29 /* SingleEntityList */,
@@ -378,6 +381,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B00C5A0299F73D100C92E29 /* README.md in Resources */,
 				3B00C54A299F31C400C92E29 /* Preview Assets.xcassets in Resources */,
 				3B00C547299F31C400C92E29 /* Assets.xcassets in Resources */,
 			);
