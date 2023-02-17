@@ -16,7 +16,11 @@ struct PaginatedBooksListView: View {
         List {
             switch viewModel.state {
             case .initialized, .loading where viewModel.data.isEmpty:
-                ProgressView()
+                HStack {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
+                }
             case .error:
                 Text("Error")
             default:
@@ -24,7 +28,8 @@ struct PaginatedBooksListView: View {
                     Text(book.name)
                 }
             }
-            if self.viewModel.repository.shouldFetch() {
+            if !viewModel.data.isEmpty,
+               self.viewModel.repository.shouldFetch() {
                 Text("Fetching more...")
                     .task {
                         try? await viewModel.fetchNext()
