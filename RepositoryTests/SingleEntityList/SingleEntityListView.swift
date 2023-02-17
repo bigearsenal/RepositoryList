@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SingleEntityListView: View {
     @State var selectedType = 0
-    var examples = ["OnePaged", "Pagination"]
+    var examples = ["OnePaged", "Pagination", "Sectioned"]
     
     var body: some View {
         VStack {

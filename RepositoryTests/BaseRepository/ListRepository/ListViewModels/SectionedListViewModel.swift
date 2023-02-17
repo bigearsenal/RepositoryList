@@ -2,11 +2,9 @@ import Foundation
 import Combine
 
 /// Section of a list
-protocol ListSection: Hashable {
+protocol ListSection: Hashable, Identifiable {
     /// Type of item in the section
     associatedtype ItemType: Hashable & Identifiable
-    /// Id of section
-    var id: UUID { get }
     /// List of items in section
     var items: [ItemType] { get }
 }
