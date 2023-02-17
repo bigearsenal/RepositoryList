@@ -4,6 +4,8 @@
 
 Single entity list is a list that contains data of only 1 entity
 
+https://user-images.githubusercontent.com/6975538/219600688-317f91d6-cf8a-4f8d-8e21-2d1100662c07.mov
+
 ### Create Model
 
 Create a list item model that conform to `Hashable & Identifiable`
