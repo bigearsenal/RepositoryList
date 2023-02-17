@@ -8,68 +8,60 @@
 import SwiftUI
 
 struct SectionedBooksListView: View {
-    @StateObject var viewModel = SectionedListViewModel(
-        listViewModels: [
-            PaginatedListViewModel(
-                repository: PaginatedBooksListRepository()
-            )
-        ]
+    @State var sections: [BooksListSection] = []
+    @StateObject var viewModel = PaginatedListViewModel(
+        repository: PaginatedBooksListRepository()
     )
     
     var body: some View {
         List {
-            ForEach(viewModel.sections, id: \.id) {section in
-                switch section {
-                case let section as BooksListSection:
-                    Section(header: Text(section.name)) {
-                        switch section.loadingState {
-                        case .initialized, .loading where section.items.isEmpty:
-                            HStack {
-                                Spacer()
-                                ProgressView()
-                                Spacer()
-                            }
-                        case .error:
-                            Text("Error")
-                        default:
-                            ForEach(section.items) { book in
-                                Text(book.name)
-                            }
+            ForEach(sections, id: \.id) {section in
+                Section(header: Text(section.name)) {
+                    switch section.loadingState {
+                    case .initialized, .loading where section.items.isEmpty:
+                        HStack {
+                            Spacer()
+                            ProgressView()
+                            Spacer()
                         }
-
-//                        if viewModel.repository.shouldFetch() {
-//                            if viewModel.data.isEmpty == false {
-//                                Text("Fetching more...")
-//                                    .task {
-//                                        try? await viewModel.fetchNext()
-//                                    }
-//                            }
-//                        } else {
-//                            Text("End of list")
-//                        }
+                    case .error:
+                        Text("Error")
+                    default:
+                        ForEach(section.items) { book in
+                            Text(book.name)
+                        }
                     }
-                default:
-                    EmptyView()
                 }
-                
             }
             
-
+            if viewModel.repository.shouldFetch() {
+                if viewModel.data.isEmpty == false {
+                    Text("Fetching more...")
+                        .task {
+                            try? await viewModel.fetchNext()
+                        }
+                }
+            } else {
+                Text("End of list")
+            }
         }
-//        .overlay(
-//            HStack {
-//                Spacer()
-//                VStack {
-//                    Spacer()
-//                    Text("Page: \(viewModel.repository.currentPage)")
-//                }
-//            }.padding()
-//        )
+        .overlay(
+            HStack {
+                Spacer()
+                VStack {
+                    Spacer()
+                    Text("Page: \(viewModel.repository.currentPage)")
+                }
+            }.padding()
+        )
         .task {
             try? await viewModel.reload()
         }
         .refreshable {
             try? await viewModel.refresh()
+        }
+        .onReceive(viewModel.sectionsPublisher) { sections in
+            self.sections = sections as! [BooksListSection]
         }
     }
 }
