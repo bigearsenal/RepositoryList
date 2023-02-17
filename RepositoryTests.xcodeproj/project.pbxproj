@@ -14,6 +14,18 @@
 		3B00C554299F31C400C92E29 /* RepositoryTestsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C553299F31C400C92E29 /* RepositoryTestsTests.swift */; };
 		3B00C55E299F31C400C92E29 /* RepositoryTestsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C55D299F31C400C92E29 /* RepositoryTestsUITests.swift */; };
 		3B00C560299F31C400C92E29 /* RepositoryTestsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C55F299F31C400C92E29 /* RepositoryTestsUITestsLaunchTests.swift */; };
+		3B00C57B299F321200C92E29 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C56E299F321200C92E29 /* Repository.swift */; };
+		3B00C57C299F321200C92E29 /* LimitOffsetPaginationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C570299F321200C92E29 /* LimitOffsetPaginationStrategy.swift */; };
+		3B00C57D299F321200C92E29 /* PaginationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C571299F321200C92E29 /* PaginationStrategy.swift */; };
+		3B00C57E299F321200C92E29 /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C573299F321200C92E29 /* ItemViewModel.swift */; };
+		3B00C57F299F321200C92E29 /* SectionedListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C575299F321200C92E29 /* SectionedListViewModel.swift */; };
+		3B00C580299F321200C92E29 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C576299F321200C92E29 /* ListViewModel.swift */; };
+		3B00C581299F321200C92E29 /* PaginatedListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C577299F321200C92E29 /* PaginatedListViewModel.swift */; };
+		3B00C582299F321200C92E29 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C579299F321200C92E29 /* LoadingState.swift */; };
+		3B00C586299F324F00C92E29 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C585299F324F00C92E29 /* Book.swift */; };
+		3B00C590299F332F00C92E29 /* OnePagedBooksRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C58F299F332F00C92E29 /* OnePagedBooksRepository.swift */; };
+		3B00C592299F353F00C92E29 /* SingleEntityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C591299F353F00C92E29 /* SingleEntityListView.swift */; };
+		3B00C594299F35E200C92E29 /* MultipleEntitiesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C593299F35E200C92E29 /* MultipleEntitiesListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +56,18 @@
 		3B00C559299F31C400C92E29 /* RepositoryTestsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RepositoryTestsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B00C55D299F31C400C92E29 /* RepositoryTestsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTestsUITests.swift; sourceTree = "<group>"; };
 		3B00C55F299F31C400C92E29 /* RepositoryTestsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTestsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3B00C56E299F321200C92E29 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		3B00C570299F321200C92E29 /* LimitOffsetPaginationStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimitOffsetPaginationStrategy.swift; sourceTree = "<group>"; };
+		3B00C571299F321200C92E29 /* PaginationStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginationStrategy.swift; sourceTree = "<group>"; };
+		3B00C573299F321200C92E29 /* ItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
+		3B00C575299F321200C92E29 /* SectionedListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionedListViewModel.swift; sourceTree = "<group>"; };
+		3B00C576299F321200C92E29 /* ListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		3B00C577299F321200C92E29 /* PaginatedListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatedListViewModel.swift; sourceTree = "<group>"; };
+		3B00C579299F321200C92E29 /* LoadingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
+		3B00C585299F324F00C92E29 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		3B00C58F299F332F00C92E29 /* OnePagedBooksRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnePagedBooksRepository.swift; sourceTree = "<group>"; };
+		3B00C591299F353F00C92E29 /* SingleEntityListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleEntityListView.swift; sourceTree = "<group>"; };
+		3B00C593299F35E200C92E29 /* MultipleEntitiesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleEntitiesListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +120,10 @@
 			children = (
 				3B00C542299F31C200C92E29 /* RepositoryTestsApp.swift */,
 				3B00C544299F31C200C92E29 /* ContentView.swift */,
+				3B00C58D299F32D100C92E29 /* SingleEntityList */,
+				3B00C58E299F32FD00C92E29 /* MultipleEntitiesList */,
+				3B00C584299F324300C92E29 /* Models */,
+				3B00C56C299F321200C92E29 /* BaseRepository */,
 				3B00C546299F31C400C92E29 /* Assets.xcassets */,
 				3B00C548299F31C400C92E29 /* Preview Content */,
 			);
@@ -125,6 +153,110 @@
 				3B00C55F299F31C400C92E29 /* RepositoryTestsUITestsLaunchTests.swift */,
 			);
 			path = RepositoryTestsUITests;
+			sourceTree = "<group>";
+		};
+		3B00C56C299F321200C92E29 /* BaseRepository */ = {
+			isa = PBXGroup;
+			children = (
+				3B00C56D299F321200C92E29 /* Repository */,
+				3B00C56F299F321200C92E29 /* PaginationStrategy */,
+				3B00C572299F321200C92E29 /* ListRepository */,
+				3B00C578299F321200C92E29 /* Models */,
+			);
+			path = BaseRepository;
+			sourceTree = "<group>";
+		};
+		3B00C56D299F321200C92E29 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				3B00C56E299F321200C92E29 /* Repository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		3B00C56F299F321200C92E29 /* PaginationStrategy */ = {
+			isa = PBXGroup;
+			children = (
+				3B00C570299F321200C92E29 /* LimitOffsetPaginationStrategy.swift */,
+				3B00C571299F321200C92E29 /* PaginationStrategy.swift */,
+			);
+			path = PaginationStrategy;
+			sourceTree = "<group>";
+		};
+		3B00C572299F321200C92E29 /* ListRepository */ = {
+			isa = PBXGroup;
+			children = (
+				3B00C573299F321200C92E29 /* ItemViewModel.swift */,
+				3B00C574299F321200C92E29 /* ListViewModels */,
+			);
+			path = ListRepository;
+			sourceTree = "<group>";
+		};
+		3B00C574299F321200C92E29 /* ListViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				3B00C575299F321200C92E29 /* SectionedListViewModel.swift */,
+				3B00C576299F321200C92E29 /* ListViewModel.swift */,
+				3B00C577299F321200C92E29 /* PaginatedListViewModel.swift */,
+			);
+			path = ListViewModels;
+			sourceTree = "<group>";
+		};
+		3B00C578299F321200C92E29 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3B00C579299F321200C92E29 /* LoadingState.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3B00C584299F324300C92E29 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3B00C585299F324F00C92E29 /* Book.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3B00C587299F327600C92E29 /* OnePagedBooksList */ = {
+			isa = PBXGroup;
+			children = (
+				3B00C58F299F332F00C92E29 /* OnePagedBooksRepository.swift */,
+			);
+			path = OnePagedBooksList;
+			sourceTree = "<group>";
+		};
+		3B00C58A299F32AA00C92E29 /* PaginatedBooksList */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PaginatedBooksList;
+			sourceTree = "<group>";
+		};
+		3B00C58B299F32BB00C92E29 /* SectionedBooksList */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SectionedBooksList;
+			sourceTree = "<group>";
+		};
+		3B00C58D299F32D100C92E29 /* SingleEntityList */ = {
+			isa = PBXGroup;
+			children = (
+				3B00C591299F353F00C92E29 /* SingleEntityListView.swift */,
+				3B00C587299F327600C92E29 /* OnePagedBooksList */,
+				3B00C58B299F32BB00C92E29 /* SectionedBooksList */,
+				3B00C58A299F32AA00C92E29 /* PaginatedBooksList */,
+			);
+			path = SingleEntityList;
+			sourceTree = "<group>";
+		};
+		3B00C58E299F32FD00C92E29 /* MultipleEntitiesList */ = {
+			isa = PBXGroup;
+			children = (
+				3B00C593299F35E200C92E29 /* MultipleEntitiesListView.swift */,
+			);
+			path = MultipleEntitiesList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +389,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B00C590299F332F00C92E29 /* OnePagedBooksRepository.swift in Sources */,
+				3B00C594299F35E200C92E29 /* MultipleEntitiesListView.swift in Sources */,
+				3B00C57F299F321200C92E29 /* SectionedListViewModel.swift in Sources */,
 				3B00C545299F31C200C92E29 /* ContentView.swift in Sources */,
+				3B00C582299F321200C92E29 /* LoadingState.swift in Sources */,
+				3B00C57D299F321200C92E29 /* PaginationStrategy.swift in Sources */,
+				3B00C57C299F321200C92E29 /* LimitOffsetPaginationStrategy.swift in Sources */,
 				3B00C543299F31C200C92E29 /* RepositoryTestsApp.swift in Sources */,
+				3B00C57B299F321200C92E29 /* Repository.swift in Sources */,
+				3B00C580299F321200C92E29 /* ListViewModel.swift in Sources */,
+				3B00C592299F353F00C92E29 /* SingleEntityListView.swift in Sources */,
+				3B00C586299F324F00C92E29 /* Book.swift in Sources */,
+				3B00C57E299F321200C92E29 /* ItemViewModel.swift in Sources */,
+				3B00C581299F321200C92E29 /* PaginatedListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

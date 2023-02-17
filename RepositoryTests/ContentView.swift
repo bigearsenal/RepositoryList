@@ -8,12 +8,31 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var selectedEntityType = 0
+    var examples = ["Single Entity", "Multiple Entity"]
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            // Picker
+            Picker("Options", selection: $selectedEntityType) {
+                ForEach(0 ..< examples.count, id: \.self) { index in
+                    Text(self.examples[index])
+                        .tag(index)
+                }
+
+            }.pickerStyle(SegmentedPickerStyle())
+            
+            // View
+            switch selectedEntityType {
+            case 0:
+                SingleEntityListView()
+            case 1:
+                MultipleEntitiesListView()
+            default:
+                EmptyView()
+            }
+            
+            Spacer()
         }
         .padding()
     }
