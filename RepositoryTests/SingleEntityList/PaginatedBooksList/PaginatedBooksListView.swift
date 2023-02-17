@@ -28,15 +28,27 @@ struct PaginatedBooksListView: View {
                     Text(book.name)
                 }
             }
-            if !viewModel.data.isEmpty,
-               self.viewModel.repository.shouldFetch() {
-                Text("Fetching more...")
-                    .task {
-                        try? await viewModel.fetchNext()
-                    }
-            }
             
+            if viewModel.repository.shouldFetch() {
+                if viewModel.data.isEmpty == false {
+                    Text("Fetching more...")
+                        .task {
+                            try? await viewModel.fetchNext()
+                        }
+                }
+            } else {
+                Text("End of list")
+            }
         }
+        .overlay(
+            HStack {
+                Spacer()
+                VStack {
+                    Spacer()
+                    Text("Page: \(viewModel.repository.currentPage)")
+                }
+            }.padding()
+        )
         .task {
             try? await viewModel.reload()
         }

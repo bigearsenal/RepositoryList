@@ -29,6 +29,5 @@ class LimitOffsetPaginationStrategy: PaginationStrategy {
     
     @MainActor func moveToNextPage() {
         offset += limit
-        print(offset)
     }
 }

@@ -26,6 +26,7 @@ class PaginatedListViewModel<Repository: AnyPaginatedListRepository>: ListViewMo
                 !data.contains { $0.id == newRecord.id }
             }
         )
+        repository.paginationStrategy.checkIfLastPageLoaded(lastSnapshot: newData)
         super.handleNewData(data)
     }
 
