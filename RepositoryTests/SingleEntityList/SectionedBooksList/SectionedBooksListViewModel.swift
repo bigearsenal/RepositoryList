@@ -29,7 +29,7 @@ extension PaginatedListViewModel<PaginatedBooksListRepository>: SectionsConverti
                 return chunkedArray.enumerated()
                     .map { [weak self] index, items in
                         BooksListSection(
-                            id: "\(index)",
+                            id: "\(index + 1)",
                             items: items,
                             loadingState: self?.state ?? .loaded,
                             error: self?.error?.localizedDescription
