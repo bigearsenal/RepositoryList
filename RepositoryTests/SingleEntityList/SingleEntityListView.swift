@@ -8,27 +8,31 @@
 import SwiftUI
 
 struct SingleEntityListView: View {
-    @StateObject var viewModel = ListViewModel(repository: OnePagedBooksRepository())
+    @State var selectedType = 0
+    var examples = ["OnePaged", "Pagination"]
     
     var body: some View {
-        List {
-            switch viewModel.state {
-            case .initialized, .loading where viewModel.data.isEmpty:
-                ProgressView()
-            case .error:
-                Text("Error")
-            default:
-                ForEach(viewModel.data) { book in
-                    Text(book.name)
+        VStack {
+            // Picker
+            Picker("Options", selection: $selectedType) {
+                ForEach(0 ..< examples.count, id: \.self) { index in
+                    Text(self.examples[index])
+                        .tag(index)
                 }
+
+            }.pickerStyle(SegmentedPickerStyle())
+            
+            // View
+            switch selectedType {
+            case 0:
+                OnePagedBooksListView()
+            case 1:
+                EmptyView()
+            default:
+                EmptyView()
             }
             
-        }
-        .task {
-            try? await viewModel.reload()
-        }
-        .refreshable {
-            try? await viewModel.refresh()
+            Spacer()
         }
     }
 }
