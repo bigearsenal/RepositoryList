@@ -28,11 +28,7 @@ Example: `AnyListRepository` for one-page only list
 ```swift
 final class OnePagedBooksRepository: AnyListRepository {
     func fetch() async throws -> [Book] {
-        // try await bookAPI.getBooksList()
-        
-        // mock
-        try await Task.sleep(nanoseconds: 500_000_000)
-        return Array(0..<10).map { Book(name: "Book#\($0)") }
+        try await bookAPI.getBooksList()
     }
 }
 ```
