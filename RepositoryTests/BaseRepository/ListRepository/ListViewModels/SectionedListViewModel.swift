@@ -2,11 +2,16 @@ import Foundation
 import Combine
 
 /// Section of a list
-protocol ListSection: Hashable, Identifiable {
+protocol ListSection: Hashable {
     /// Type of item in the section
     associatedtype ItemType: Hashable & Identifiable
+    var id: String { get }
     /// List of items in section
     var items: [ItemType] { get }
+    /// state of the section
+    var loadingState: LoadingState { get }
+    /// error of the section
+    var error: String? { get } // TODO: - Error type is not Hashable
 }
 
 /// Define if a viewModel can be convertible to sections
@@ -39,7 +44,7 @@ class SectionedListViewModel: ObservableObject {
     private let initialData: [any ListSection]
 
     /// Sections in list
-    @Published private var sections: [any ListSection] = []
+    @Published var sections: [any ListSection] = []
     
     // MARK: - Initializer
     

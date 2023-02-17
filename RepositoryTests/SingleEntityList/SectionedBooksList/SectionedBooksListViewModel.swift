@@ -10,8 +10,14 @@ import Combine
 
 // Create section type
 struct BooksListSection: ListSection {
-    var id: Int
+    var id: String
     var items: [Book]
+    var loadingState: LoadingState
+    var error: String?
+    
+    var name: String {
+        "Page \(id)"
+    }
 }
 
 // Make ListViewModel conform to SectionsConvertibleListViewModel
@@ -21,8 +27,13 @@ extension PaginatedListViewModel<PaginatedBooksListRepository>: SectionsConverti
             .map { items in
                 let chunkedArray = items.chunked(into: 10)
                 return chunkedArray.enumerated()
-                    .map { index, items in
-                        BooksListSection(id: index, items: items)
+                    .map { [weak self] index, items in
+                        BooksListSection(
+                            id: "\(index)",
+                            items: items,
+                            loadingState: self?.state ?? .loaded,
+                            error: self?.error?.localizedDescription
+                        )
                     }
             }
             .eraseToAnyPublisher()
