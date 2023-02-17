@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct OnePagedBooksListView: View {
-    @StateObject var viewModel = ListViewModel(repository: OnePagedBooksRepository())
+    @StateObject var viewModel = ListViewModel(
+        repository: OnePagedBooksRepository()
+    )
     
     var body: some View {
         List {

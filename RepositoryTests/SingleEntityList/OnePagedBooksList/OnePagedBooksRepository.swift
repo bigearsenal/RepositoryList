@@ -13,7 +13,7 @@ final class OnePagedBooksRepository: AnyListRepository {
     }
     
     func fetch() async throws -> [Book] {
-        try await Task.sleep(nanoseconds: 3_000_000_000)
+        try await Task.sleep(nanoseconds: .random(in: 1...3) * 1_000_000_000)
         return Array(0..<10).map { Book(name: "Book#\($0)") }
     }
 }
