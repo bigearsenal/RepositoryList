@@ -48,27 +48,195 @@ final class PaginatedBooksListRepository: AnyPaginatedListRepository {
 }
 ```
 
-If the data require section, conform it to `SectionsConvertibleListViewModel`
+### Create `ListViewModel<Repository>`
+
+Use created `Repository` to initialize `ListViewModel` (or override ListViewModel if needed).
 
 ```swift
-class MyListViewModel: 
+// One page
+@StateObject var viewModel = ListViewModel(
+    repository: OnePagedBooksRepository()
+)
 
-extension PaginatedListViewModel<PaginatedBooksListRepository>: SectionsConvertibleListViewModel {
+// Pagination
+@StateObject var viewModel = PaginatedListViewModel(
+    repository: PaginatedBooksListRepository()
+)
+```
+
+### Use `ListViewModel` in SwiftUI
+
+Example: For non-pagination list:
+
+```swift
+struct OnePagedBooksListView: View {
+    @StateObject var viewModel = ListViewModel(
+        repository: OnePagedBooksRepository()
+    )
+    
+    var body: some View {
+        List {
+            switch viewModel.state {
+            case .initialized, .loading where viewModel.data.isEmpty:
+                ProgressView()
+            case .error:
+                Text("Error")
+            default:
+                ForEach(viewModel.data) { book in
+                    Text(book.name)
+                }
+            }
+            
+        }
+        .task {
+            try? await viewModel.reload()
+        }
+        .refreshable {
+            try? await viewModel.refresh()
+        }
+    }
+}
+```
+
+Example: For paginated list with infinite scrolling
+
+```swift
+struct PaginatedBooksListView: View {
+    @StateObject var viewModel = PaginatedListViewModel(
+        repository: PaginatedBooksListRepository()
+    )
+    
+    var body: some View {
+        List {
+            // Show list base on loadingState
+            switch viewModel.state {
+            case .initialized, .loading where viewModel.data.isEmpty:
+                HStack {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
+                }
+            case .error:
+                Text("Error")
+            default:
+                ForEach(viewModel.data) { book in
+                    Text(book.name)
+                }
+            }
+            
+            // Load more indicator
+            if viewModel.repository.shouldFetch() {
+                if viewModel.data.isEmpty == false {
+                    Text("Fetching more...")
+                        .task {
+                            try? await viewModel.fetchNext()
+                        }
+                }
+            } else {
+                Text("End of list")
+            }
+        }
+        // Reload viewModel onAppear
+        .task {
+            try? await viewModel.reload()
+        }
+        // Refresh data when pull-to-refresh
+        .refreshable {
+            try? await viewModel.refresh()
+        }
+    }
+}
+```
+
+For `SectionedBooksListView`, make Our viewModel conform to `SectionsConvertibleListViewModel`:
+
+```swift
+class BooksPaginatedListViewModel: PaginatedListViewModel<PaginatedBooksListRepository> {
+    ...
+}
+
+extension BooksPaginatedListViewModel: SectionsConvertibleListViewModel {
     var sectionsPublisher: AnyPublisher<[any ListSection], Never> {
         $data
             .map { items in
-                let chunkedArray = items.chunked(into: 10)
-                return chunkedArray.enumerated()
-                    .map { [weak self] index, items in
-                        BooksListSection(
-                            id: "\(index + 1)",
-                            items: items,
-                            loadingState: self?.state ?? .loaded,
-                            error: self?.error?.localizedDescription
-                        )
-                    }
+                // Indicate how data is mapped to Section
+                ...
             }
             .eraseToAnyPublisher()
     }
 }
 ```
+
+Use it in SwiftUI
+
+```swift
+struct SectionedBooksListView: View {
+    @State var sections: [BooksListSection] = []
+    @StateObject var viewModel = PaginatedListViewModel(
+        repository: PaginatedBooksListRepository()
+    )
+    
+    var body: some View {
+        List {
+            ForEach(sections, id: \.id) {section in
+                Section(header: Text(section.name)) {
+                    switch section.loadingState {
+                    case .initialized, .loading where section.items.isEmpty:
+                        HStack {
+                            Spacer()
+                            ProgressView()
+                            Spacer()
+                        }
+                    case .error:
+                        Text("Error")
+                    default:
+                        ForEach(section.items) { book in
+                            Text(book.name)
+                        }
+                    }
+                }
+            }
+            
+            if viewModel.repository.shouldFetch() {
+                if viewModel.data.isEmpty == false {
+                    Text("Fetching more...")
+                        .task {
+                            try? await viewModel.fetchNext()
+                        }
+                }
+            } else {
+                Text("End of list")
+            }
+        }
+        .overlay(
+            HStack {
+                Spacer()
+                VStack {
+                    Spacer()
+                    Text("Page: \(viewModel.repository.currentPage)")
+                }
+            }.padding()
+        )
+        .task {
+            try? await viewModel.reload()
+        }
+        .refreshable {
+            try? await viewModel.refresh()
+        }
+        // Bind sectionsPublisher to sections
+        .onReceive(viewModel.sectionsPublisher) { sections in
+            self.sections = sections as! [BooksListSection]
+        }
+    }
+}
+```
+
+## How to create MultipleEntities List
+
+Multiple entities list is a list that contains data of more than 1 entity
+
+To be implemented...
+
+## Demo
+
+Open applcation or Review to find out more
