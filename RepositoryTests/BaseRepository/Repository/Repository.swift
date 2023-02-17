@@ -10,6 +10,12 @@ protocol AnyRepository {
     func fetch() async throws -> ItemType?
 }
 
+extension AnyRepository {
+    func shouldFetch() -> Bool {
+        true
+    }
+}
+
 /// Repository that is only responsible for fetching list of items
 protocol AnyListRepository {
     /// ListItemType to be fetched
@@ -18,6 +24,12 @@ protocol AnyListRepository {
     func shouldFetch() -> Bool
     /// Fetch list of item from outside
     func fetch() async throws -> [ItemType]
+}
+
+extension AnyListRepository {
+    func shouldFetch() -> Bool {
+        true
+    }
 }
 
 protocol AnyPaginatedListRepository: AnyListRepository {
