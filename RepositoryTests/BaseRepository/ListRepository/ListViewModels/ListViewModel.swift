@@ -113,10 +113,11 @@ class ListViewModel<Repository: AnyListRepository>: ObservableObject {
         state = .error
     }
     
-    /// Override data
-    func overrideData(by newData: [ItemType]) {
-        handleNewData(newData)
-    }
+//    /// Override data
+//    func overrideData(by newData: [ItemType]) {
+//        guard state == .loaded else { return }
+//        handleNewData(newData)
+//    }
 
 //    /// Update multiple records with a closure
 //    /// - Parameter closure: updating closure

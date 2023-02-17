@@ -25,6 +25,7 @@ class LimitOffsetPaginationStrategy: PaginationStrategy {
     
     @MainActor func resetPagination() {
         offset = 0
+        isLastPageLoaded = false
     }
     
     @MainActor func moveToNextPage() {

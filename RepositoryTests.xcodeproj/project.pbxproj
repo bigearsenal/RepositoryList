@@ -201,9 +201,9 @@
 		3B00C574299F321200C92E29 /* ListViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				3B00C575299F321200C92E29 /* SectionedListViewModel.swift */,
 				3B00C576299F321200C92E29 /* ListViewModel.swift */,
 				3B00C577299F321200C92E29 /* PaginatedListViewModel.swift */,
+				3B00C575299F321200C92E29 /* SectionedListViewModel.swift */,
 			);
 			path = ListViewModels;
 			sourceTree = "<group>";

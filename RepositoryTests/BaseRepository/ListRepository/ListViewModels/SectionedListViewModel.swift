@@ -9,8 +9,20 @@ protocol ListSection: Hashable {
     var id: UUID { get }
     /// List of items in section
     var items: [ItemType] { get }
-    /// Additional userInfo
-    var userInfo: AnyHashable? { get }
+}
+
+/// Define if a viewModel can be convertible to sections
+protocol SectionsConvertibleListViewModel: ObservableObject {
+    /// Type of item in the section
+    associatedtype ItemType: Hashable & Identifiable
+    /// Map data to sections
+    var sectionsPublisher: AnyPublisher<[any ListSection], Never> { get }
+    /// Erase all data
+    func flush()
+    /// Reload data
+    func reload() async throws
+    /// Refresh
+    func refresh() async throws
 }
 
 /// Reusable list view model of a sectioned list
@@ -18,8 +30,98 @@ protocol ListSection: Hashable {
 class SectionedListViewModel: ObservableObject {
     
     // MARK: - Properties
+    
+    /// Combine subscriptions
+    private var subscriptions = Set<AnyCancellable>()
+    
+    /// List view models to handle different type of data, each viewmodel represent one or more sections
+    private let listViewModels: [any SectionsConvertibleListViewModel]
+    
+    /// Initial data for initializing state
+    private let initialData: [any ListSection]
 
     /// Sections in list
     @Published private var sections: [any ListSection] = []
     
+    // MARK: - Initializer
+    
+    /// SectionedListViewModel initializer
+    /// - Parameters:
+    ///   - initialData: initial data for begining state
+    ///   - listViewModels: listViewModels to handle data
+    init(
+        initialData: [any ListSection] = [],
+        listViewModels: [any SectionsConvertibleListViewModel]
+    ) {
+        self.initialData = initialData
+        self.listViewModels = listViewModels
+        
+        sections = initialData
+        bind()
+    }
+    
+    // MARK: - Binding
+
+    private func bind() {
+        // assertion
+        guard !listViewModels.isEmpty else { return }
+        
+        // combine data
+        var publisher = listViewModels.first!
+            .sectionsPublisher
+            .eraseToAnyPublisher()
+        
+        for viewModel in listViewModels {
+            publisher = publisher
+                .combineLatest(viewModel.sectionsPublisher)
+                .map { $0 + $1 }
+                .eraseToAnyPublisher()
+        }
+        
+        publisher
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.sections, on: self)
+            .store(in: &subscriptions)
+    }
+    
+    // MARK: - Actions
+
+    /// Erase data and reset repository to its initial state
+    func flush() {
+        // flush viewModels data
+        for viewModel in listViewModels {
+            viewModel.flush()
+        }
+        
+        // flush this viewModel
+        sections = initialData
+    }
+    
+    /// Erase and reload all data
+    func reload() async throws {
+        // request in parallel
+        try await withThrowingTaskGroup(of: Void.self) { group in
+            for viewModel in listViewModels {
+                group.addTask {
+                    try await viewModel.reload()
+                }
+            }
+            
+            for try await _ in group {}
+        }
+    }
+    
+    /// Refresh data without erasing current data
+    func refresh() async throws {
+        // request in parallel
+        try await withThrowingTaskGroup(of: Void.self) { group in
+            for viewModel in listViewModels {
+                group.addTask {
+                    try await viewModel.refresh()
+                }
+            }
+            
+            for try await _ in group {}
+        }
+    }
 }

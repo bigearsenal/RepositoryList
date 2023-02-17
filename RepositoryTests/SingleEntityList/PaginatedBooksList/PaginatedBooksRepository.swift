@@ -12,7 +12,7 @@ final class PaginatedBooksListRepository: AnyPaginatedListRepository {
     let limit = 20
     let paginationStrategy: LimitOffsetPaginationStrategy
     
-    @MainActor var currentPage = 0
+    @MainActor var currentPage = 1
     
     init() {
         paginationStrategy = LimitOffsetPaginationStrategy(limit: limit)
