@@ -20,7 +20,9 @@ struct SingleEntityListView: View {
                         .tag(index)
                 }
 
-            }.pickerStyle(SegmentedPickerStyle())
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding(.horizontal)
             
             // View
             switch selectedType {

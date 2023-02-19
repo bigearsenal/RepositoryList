@@ -20,7 +20,9 @@ struct ContentView: View {
                         .tag(index)
                 }
 
-            }.pickerStyle(SegmentedPickerStyle())
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding(.horizontal)
             
             // View
             switch selectedEntityType {
@@ -34,7 +36,6 @@ struct ContentView: View {
             
             Spacer()
         }
-        .padding()
     }
 }
 

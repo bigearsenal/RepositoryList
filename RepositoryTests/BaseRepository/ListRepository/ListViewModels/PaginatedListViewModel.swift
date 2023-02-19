@@ -12,9 +12,28 @@ class PaginatedListViewModel<Repository: AnyPaginatedListRepository>: ListViewMo
     }
 
     /// Refresh data
-    override func refresh() async throws {
+    override func refresh() async {
         repository.paginationStrategy.resetPagination()
-        try await reload()
+        await reload()
+    }
+    
+    /// Request data from outside to get new data
+    @discardableResult
+    override func request() async -> [ItemType] {
+        // prevent unwanted request
+        guard repository.shouldFetch() else {
+            return []
+        }
+        
+        // request new data
+        let newData = await super.request()
+        repository.paginationStrategy.checkIfLastPageLoaded(lastSnapshot: newData)
+        
+        // move to next page
+        repository.paginationStrategy.moveToNextPage()
+        
+        // return loaded new data
+        return newData
     }
     
     /// Handle new data that just received
@@ -26,17 +45,13 @@ class PaginatedListViewModel<Repository: AnyPaginatedListRepository>: ListViewMo
                 !data.contains { $0.id == newRecord.id }
             }
         )
-        repository.paginationStrategy.checkIfLastPageLoaded(lastSnapshot: newData)
         super.handleNewData(data)
     }
 
     /// Fetch next records if pagination is enabled
-    func fetchNext() async throws {
-        // move to next page
-        repository.paginationStrategy.moveToNextPage()
-        
+    func fetchNext() async {
         // call request
-        try await request()
+        await request()
     }
     
 //    func updateFirstPage(onSuccessFilterNewData: (([ItemType]) -> [ItemType])? = nil) {

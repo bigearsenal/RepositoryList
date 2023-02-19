@@ -33,7 +33,7 @@ struct PaginatedBooksListView: View {
                 if viewModel.data.isEmpty == false {
                     Text("Fetching more...")
                         .task {
-                            try? await viewModel.fetchNext()
+                            await viewModel.fetchNext()
                         }
                 }
             } else {
@@ -50,10 +50,10 @@ struct PaginatedBooksListView: View {
             }.padding()
         )
         .task {
-            try? await viewModel.reload()
+            await viewModel.reload()
         }
         .refreshable {
-            try? await viewModel.refresh()
+            await viewModel.refresh()
         }
     }
 }

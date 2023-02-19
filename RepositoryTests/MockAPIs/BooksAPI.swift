@@ -23,7 +23,7 @@ final class MockPaginatedBooksAPI {
     @MainActor var currentPage = 1
     
     func getBooks(offset: Int, limit: Int) async throws -> [Book] {
-        try await Task.sleep(nanoseconds: 1_000_000_000)
+        try await Task.sleep(nanoseconds: 500_000_000)
         
         let page = offset / limit + 1
         let numberOfRecords: Int = page >= maxPage ? .random(in: 0..<limit) : limit // return less than limit to end the list

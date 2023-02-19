@@ -25,7 +25,7 @@ extension PaginatedListViewModel<PaginatedBooksListRepository>: SectionsConverti
     var sectionsPublisher: AnyPublisher<[any ListSection], Never> {
         $data
             .map { items in
-                let chunkedArray = items.chunked(into: 10)
+                let chunkedArray = items.chunked(into: 20)
                 return chunkedArray.enumerated()
                     .map { [weak self] index, items in
                         BooksListSection(

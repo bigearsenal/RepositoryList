@@ -16,7 +16,11 @@ struct OnePagedBooksListView: View {
         List {
             switch viewModel.state {
             case .initialized, .loading where viewModel.data.isEmpty:
-                ProgressView()
+                HStack {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
+                }
             case .error:
                 Text("Error")
             default:
@@ -27,10 +31,10 @@ struct OnePagedBooksListView: View {
             
         }
         .task {
-            try? await viewModel.reload()
+            await viewModel.reload()
         }
         .refreshable {
-            try? await viewModel.refresh()
+            await viewModel.refresh()
         }
     }
 }

@@ -38,7 +38,7 @@ struct SectionedBooksListView: View {
                 if viewModel.data.isEmpty == false {
                     Text("Fetching more...")
                         .task {
-                            try? await viewModel.fetchNext()
+                            await viewModel.fetchNext()
                         }
                 }
             } else {
@@ -55,10 +55,10 @@ struct SectionedBooksListView: View {
             }.padding()
         )
         .task {
-            try? await viewModel.reload()
+            await viewModel.reload()
         }
         .refreshable {
-            try? await viewModel.refresh()
+            await viewModel.refresh()
         }
         .onReceive(viewModel.sectionsPublisher) { sections in
             self.sections = sections as! [BooksListSection]
