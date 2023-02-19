@@ -2,7 +2,11 @@
 
 ## How to create SingleEntity List
 
+(We can of course write reusable `ListView` later...)
+
 Single entity list is a list that contains data of only 1 entity
+
+https://user-images.githubusercontent.com/6975538/219600688-317f91d6-cf8a-4f8d-8e21-2d1100662c07.mov
 
 ### Create Model
 
@@ -26,11 +30,7 @@ Example: `AnyListRepository` for one-page only list
 ```swift
 final class OnePagedBooksRepository: AnyListRepository {
     func fetch() async throws -> [Book] {
-        // try await bookAPI.getBooksList()
-        
-        // mock
-        try await Task.sleep(nanoseconds: 500_000_000)
-        return Array(0..<10).map { Book(name: "Book#\($0)") }
+        try await bookAPI.getBooksList()
     }
 }
 ```
