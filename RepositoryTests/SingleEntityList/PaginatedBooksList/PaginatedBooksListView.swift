@@ -14,6 +14,12 @@ struct PaginatedBooksListView: View {
     
     var body: some View {
         List {
+            // List of item
+            ForEach(viewModel.data) { book in
+                Text(book.name)
+            }
+            
+            // state
             switch viewModel.state {
             case .initialized, .loading where viewModel.data.isEmpty:
                 HStack {
@@ -21,20 +27,28 @@ struct PaginatedBooksListView: View {
                     ProgressView()
                     Spacer()
                 }
-            case .error:
+            case .error where viewModel.data.isEmpty:
                 Text("Error")
             default:
-                ForEach(viewModel.data) { book in
-                    Text(book.name)
-                }
+                EmptyView()
             }
             
             if viewModel.repository.shouldFetch() {
                 if viewModel.data.isEmpty == false {
-                    Text("Fetching more...")
-                        .task {
-                            await viewModel.fetchNext()
+                    HStack {
+                        if viewModel.error != nil {
+                            Button("Error fetching more item... Tap to try again") {
+                                Task {
+                                    await viewModel.fetchNext()
+                                }
+                            }
+                        } else {
+                            Text("Fetching more...")
+                                .task {
+                                    await viewModel.fetchNext()
+                                }
                         }
+                    }
                 }
             } else {
                 Text("End of list")
@@ -45,6 +59,10 @@ struct PaginatedBooksListView: View {
                 Spacer()
                 VStack {
                     Spacer()
+                    if viewModel.error != nil {
+                        Text("Error!")
+                            .foregroundColor(.red)
+                    }
                     Text("Page: \(viewModel.repository.currentPage)")
                 }
             }.padding()

@@ -19,10 +19,17 @@ final class MockOnePagedBooksAPI {
 // MARK: - Pagination api
 
 final class MockPaginatedBooksAPI {
+    enum Error: Swift.Error {
+        case fakeError
+    }
+    
     let maxPage = 5
     @MainActor var currentPage = 1
     
     func getBooks(offset: Int, limit: Int) async throws -> [Book] {
+        // fake error in 1/3 case
+        guard Int.random(in: 0..<3) > 0 else { throw Error.fakeError }
+        
         try await Task.sleep(nanoseconds: 500_000_000)
         
         let page = offset / limit + 1
