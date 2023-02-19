@@ -8,26 +8,20 @@
 import Foundation
 
 final class PaginatedBooksListRepository: AnyPaginatedListRepository {
-    let maxPage = 5
-    let limit = 20
+    // MARK: - Properties
+
     let paginationStrategy: LimitOffsetPaginationStrategy
+    let api = MockPaginatedBooksAPI()
+    @MainActor var currentPage: Int { api.currentPage }
     
-    @MainActor var currentPage = 1
-    
+    // MARK: - Initializer
+
     init() {
-        paginationStrategy = LimitOffsetPaginationStrategy(limit: limit)
+        paginationStrategy = LimitOffsetPaginationStrategy(limit: 20)
     }
     
+    // MARK: - AnyPaginatedListRepository
     func fetch() async throws -> [Book] {
-        try await Task.sleep(nanoseconds: 1_000_000_000)
-        
-        let offset = await paginationStrategy.offset
-        let page = offset / limit + 1
-        let numberOfRecords: Int = page >= maxPage ? .random(in: 0..<limit) : limit // return less than limit to end the list
-        
-        await MainActor.run {
-            currentPage = page
-        }
-        return Array(offset..<offset+numberOfRecords).map { Book(name: "Book#\($0)") }
+        try await api.getBooks(offset: paginationStrategy.offset, limit: paginationStrategy.limit)
     }
 }
