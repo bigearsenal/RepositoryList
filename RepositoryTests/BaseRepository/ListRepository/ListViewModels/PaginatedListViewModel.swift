@@ -32,11 +32,11 @@ class PaginatedListViewModel<Repository: AnyPaginatedListRepository>: ListViewMo
 
     /// Fetch next records if pagination is enabled
     func fetchNext() async throws {
-        // call request
-        try await request()
-        
         // move to next page
         repository.paginationStrategy.moveToNextPage()
+        
+        // call request
+        try await request()
     }
     
 //    func updateFirstPage(onSuccessFilterNewData: (([ItemType]) -> [ItemType])? = nil) {
