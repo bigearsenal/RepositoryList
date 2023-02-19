@@ -71,10 +71,10 @@ class ListViewModel<Repository: AnyListRepository>: ObservableObject {
     /// Request data from outside to get new data
     /// - Returns: New data
     @discardableResult
-    func request() async -> [ItemType] {
+    func request() async -> Result<[ItemType], Error> {
         // prevent unwanted request
         guard repository.shouldFetch() else {
-            return []
+            return .failure(CancellationError())
         }
         
         // cancel previous request
@@ -93,13 +93,13 @@ class ListViewModel<Repository: AnyListRepository>: ObservableObject {
         do {
             let newData = try await loadingTask!.value
             handleNewData(newData)
-            return newData
+            return .success(newData)
         } catch {
-            if error is CancellationError {
-                return []
+            // ignore cancellation error
+            if !(error is CancellationError) {
+                handleError(error)
             }
-            handleError(error)
-            return []
+            return .failure(error)
         }
     }
     

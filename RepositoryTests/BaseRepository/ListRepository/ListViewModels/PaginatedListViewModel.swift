@@ -19,21 +19,25 @@ class PaginatedListViewModel<Repository: AnyPaginatedListRepository>: ListViewMo
     
     /// Request data from outside to get new data
     @discardableResult
-    override func request() async -> [ItemType] {
-        // prevent unwanted request
-        guard repository.shouldFetch() else {
-            return []
+    override func request() async -> Result<[ItemType], Error> {
+        // request new data
+        let result = await super.request()
+        
+        // catch result
+        switch result {
+        case .success(let newData):
+            // check if last page loaded
+            repository.paginationStrategy.checkIfLastPageLoaded(lastSnapshot: newData)
+            
+            // move to next page
+            repository.paginationStrategy.moveToNextPage()
+        case .failure:
+            // do nothing
+            break
         }
         
-        // request new data
-        let newData = await super.request()
-        repository.paginationStrategy.checkIfLastPageLoaded(lastSnapshot: newData)
-        
-        // move to next page
-        repository.paginationStrategy.moveToNextPage()
-        
-        // return loaded new data
-        return newData
+        // return result
+        return result
     }
     
     /// Handle new data that just received
