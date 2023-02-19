@@ -24,7 +24,7 @@ struct SectionedBooksListView: View {
                             ProgressView()
                             Spacer()
                         }
-                    case .error:
+                    case .error where section.items.isEmpty:
                         Text("Error")
                     default:
                         ForEach(section.items) { book in
@@ -36,10 +36,20 @@ struct SectionedBooksListView: View {
             
             if viewModel.repository.shouldFetch() {
                 if viewModel.data.isEmpty == false {
-                    Text("Fetching more...")
-                        .task {
-                            await viewModel.fetchNext()
+                    HStack {
+                        if viewModel.error != nil {
+                            Button("Error fetching more item... Tap to try again") {
+                                Task {
+                                    await viewModel.fetchNext()
+                                }
+                            }
+                        } else {
+                            Text("Fetching more...")
+                                .task {
+                                    await viewModel.fetchNext()
+                                }
                         }
+                    }
                 }
             } else {
                 Text("End of list")
@@ -50,6 +60,10 @@ struct SectionedBooksListView: View {
                 Spacer()
                 VStack {
                     Spacer()
+                    if viewModel.error != nil {
+                        Text("Error!")
+                            .foregroundColor(.red)
+                    }
                     Text("Page: \(viewModel.repository.currentPage)")
                 }
             }.padding()

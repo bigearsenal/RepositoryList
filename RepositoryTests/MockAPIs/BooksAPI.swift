@@ -27,10 +27,11 @@ final class MockPaginatedBooksAPI {
     @MainActor var currentPage = 1
     
     func getBooks(offset: Int, limit: Int) async throws -> [Book] {
+        // fake api delay
+        try await Task.sleep(nanoseconds: 500_000_000)
+        
         // fake error in 1/3 case
         guard Int.random(in: 0..<3) > 0 else { throw Error.fakeError }
-        
-        try await Task.sleep(nanoseconds: 500_000_000)
         
         let page = offset / limit + 1
         let numberOfRecords: Int = page >= maxPage ? .random(in: 0..<limit) : limit // return less than limit to end the list
