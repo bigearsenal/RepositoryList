@@ -13,102 +13,44 @@ struct OnePagedBooksListView: View {
     )
     
     var body: some View {
-        // Empty state
-        if viewModel.data.isEmpty {
-            VStack {
-                Spacer()
-                
-                // initial loading
-                if viewModel.isLoading {
-                    VStack {
+        ListView(
+            viewModel: viewModel,
+            emptyLoadingView: {
+                VStack {
+                    Spacer()
+                    HStack {
                         Spacer()
-                        HStack {
-                            Spacer()
-                            ProgressView()
-                            Spacer()
-                        }
+                        ProgressView()
                         Spacer()
                     }
+                    Spacer()
                 }
-                
-                // initial error
-                else if viewModel.error != nil {
-                    VStack {
-                        Spacer()
-                        Button("Something is broken. Tap to try again") {
-                            Task {
-                                await viewModel.reload()
-                            }
-                        }
-                        Spacer()
-                    }
-                }
-                
-                // empty view
-                else {
-                    Button("Empty") {
+            },
+            emptyErrorView: { _ in
+                VStack {
+                    Spacer()
+                    Button("Something is broken. Tap to try again") {
                         Task {
                             await viewModel.reload()
                         }
                     }
+                    Spacer()
                 }
-                
-                Spacer()
-            }
-                .task {
-                    await viewModel.reload()
+            },
+            emptyLoadedView: {
+                Button("Empty") {
+                    Task {
+                        await viewModel.reload()
+                    }
                 }
-        }
-        
-        // Non-empty state
-        else {
-            List {
-                // List of items
-                ForEach(viewModel.data) { book in
-                    Text(book.name)
-                }
-                
-//                // should fetch new item
-//                if viewModel.repository.shouldFetch() {
-//                    // Loading at the end of the list
-//                    if viewModel.error == nil {
-//                        Text("Fetching more...")
-//                            .task {
-//                                await viewModel.fetchNext()
-//                            }
-//                    }
-//
-//                    // Error at the end of the list
-//                    else {
-//                        Button("Error fetching more item... Tap to try again") {
-//                            Task {
-//                                await viewModel.fetchNext()
-//                            }
-//                        }
-//                    }
-//                }
-//
-//                else {
-//                    Text("End of list")
-//                }
+            },
+            itemView: { book in
+                Text(book.name)
+            },
+            footerView: {
+                EmptyView()
             }
-//            .overlay(
-//                HStack {
-//                    Spacer()
-//                    VStack {
-//                        Spacer()
-//                        if viewModel.error != nil {
-//                            Text("Error!")
-//                                .foregroundColor(.red)
-//                        }
-//                        Text("Page: \(viewModel.repository.currentPage)")
-//                    }
-//                }.padding()
-//            )
-            .refreshable {
-                await viewModel.refresh()
-            }
-        }
+        )
     }
 }
 

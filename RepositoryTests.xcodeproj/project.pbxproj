@@ -33,6 +33,8 @@
 		3B00C59E299F617900C92E29 /* SectionedBooksListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C59D299F617900C92E29 /* SectionedBooksListViewModel.swift */; };
 		3B00C5A0299F73D100C92E29 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3B00C59F299F73D100C92E29 /* README.md */; };
 		3B00C5A329A1DEC700C92E29 /* BooksAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5A229A1DEC700C92E29 /* BooksAPI.swift */; };
+		3B00C5A829A32FDB00C92E29 /* PaginatedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5A729A32FDB00C92E29 /* PaginatedListView.swift */; };
+		3B00C5AA29A337DE00C92E29 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5A929A337DE00C92E29 /* ListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,8 @@
 		3B00C59D299F617900C92E29 /* SectionedBooksListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionedBooksListViewModel.swift; sourceTree = "<group>"; };
 		3B00C59F299F73D100C92E29 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		3B00C5A229A1DEC700C92E29 /* BooksAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksAPI.swift; sourceTree = "<group>"; };
+		3B00C5A729A32FDB00C92E29 /* PaginatedListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedListView.swift; sourceTree = "<group>"; };
+		3B00C5A929A337DE00C92E29 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +178,7 @@
 		3B00C56C299F321200C92E29 /* BaseRepository */ = {
 			isa = PBXGroup;
 			children = (
+				3B00C5A629A32FC900C92E29 /* Views */,
 				3B00C56D299F321200C92E29 /* Repository */,
 				3B00C56F299F321200C92E29 /* PaginationStrategy */,
 				3B00C572299F321200C92E29 /* ListRepository */,
@@ -286,6 +291,15 @@
 				3B00C5A229A1DEC700C92E29 /* BooksAPI.swift */,
 			);
 			path = MockAPIs;
+			sourceTree = "<group>";
+		};
+		3B00C5A629A32FC900C92E29 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3B00C5A929A337DE00C92E29 /* ListView.swift */,
+				3B00C5A729A32FDB00C92E29 /* PaginatedListView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -427,6 +441,7 @@
 				3B00C598299F3A8500C92E29 /* PaginatedBooksRepository.swift in Sources */,
 				3B00C582299F321200C92E29 /* LoadingState.swift in Sources */,
 				3B00C57D299F321200C92E29 /* PaginationStrategy.swift in Sources */,
+				3B00C5AA29A337DE00C92E29 /* ListView.swift in Sources */,
 				3B00C59A299F3C4C00C92E29 /* PaginatedBooksListView.swift in Sources */,
 				3B00C57C299F321200C92E29 /* LimitOffsetPaginationStrategy.swift in Sources */,
 				3B00C543299F31C200C92E29 /* RepositoryTestsApp.swift in Sources */,
@@ -434,6 +449,7 @@
 				3B00C59C299F615E00C92E29 /* SectionedBooksListView.swift in Sources */,
 				3B00C57B299F321200C92E29 /* Repository.swift in Sources */,
 				3B00C580299F321200C92E29 /* ListViewModel.swift in Sources */,
+				3B00C5A829A32FDB00C92E29 /* PaginatedListView.swift in Sources */,
 				3B00C592299F353F00C92E29 /* SingleEntityListView.swift in Sources */,
 				3B00C586299F324F00C92E29 /* Book.swift in Sources */,
 				3B00C57E299F321200C92E29 /* ItemViewModel.swift in Sources */,
