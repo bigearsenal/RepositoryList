@@ -115,6 +115,37 @@ class ListViewModel<Repository: AnyListRepository>: ObservableObject {
         isLoading = false
     }
     
+    // MARK: - Getter
+    
+    /// List loading state
+    var state: ListLoadingState {
+        // Empty state
+        if data.isEmpty {
+            let status: ListLoadingState.Status
+            
+            // empty loading
+            if isLoading {
+                status = .loading
+            }
+            
+            // empty error
+            else if let error {
+                status = .error(error)
+            }
+            
+            // empty
+            else {
+                status = .loaded
+            }
+            return .empty(status)
+        }
+        
+        // Non-empty state
+        else {
+            return .nonEmpty(loadMoreStatus: .reachedEndOfList)
+        }
+    }
+    
 //    /// Override data
 //    func overrideData(by newData: [ItemType]) {
 //        guard state == .loaded else { return }

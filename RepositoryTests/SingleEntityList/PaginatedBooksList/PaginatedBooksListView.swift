@@ -13,10 +13,11 @@ struct PaginatedBooksListView: View {
     )
     
     var body: some View {
-        PaginatedListView(
+        ListView(
             viewModel: viewModel,
             presentationStyle: .list,
             emptyLoadingView: {
+                // Skeleton may appear here
                 VStack {
                     Spacer()
                     HStack {
@@ -28,6 +29,7 @@ struct PaginatedBooksListView: View {
                 }
             },
             emptyErrorView: { _ in
+                // Error like network error may appear here
                 VStack(spacing: 20) {
                     Image(systemName: "wrongwaysign")
                         .font(.largeTitle)
@@ -42,6 +44,7 @@ struct PaginatedBooksListView: View {
                 }
             },
             emptyLoadedView: {
+                // Nothing found scene may appear here
                 VStack(spacing: 20) {
                     Image(systemName: "binoculars")
                         .font(.largeTitle)
@@ -58,21 +61,22 @@ struct PaginatedBooksListView: View {
             itemView: { book in
                 Text(book.name)
             },
-            nonEmptyLoadingView: {
-                Text("Fetching more...")
-                    .task {
-                        await viewModel.fetchNext()
-                    }
-            },
-            nonEmptyErrorView: { _ in
-                Button("Error fetching more item... Tap to try again") {
-                    Task {
-                        await viewModel.fetchNext()
+            loadMoreView: { loadMoreStatus in
+                switch loadMoreStatus {
+                case .loading:
+                    Text("Fetching more...")
+                        .task {
+                            await viewModel.fetchNext()
+                        }
+                case .reachedEndOfList:
+                    Text("End of list")
+                case .error:
+                    Button("Error fetching more item... Tap to try again") {
+                        Task {
+                            await viewModel.fetchNext()
+                        }
                     }
                 }
-            },
-            endOfListView: {
-                Text("End of list")
             }
         )
             .overlay(

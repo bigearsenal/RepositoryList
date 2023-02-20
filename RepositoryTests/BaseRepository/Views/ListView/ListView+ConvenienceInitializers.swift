@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 
 /// Convenience ListView's initializers
-extension ListView where FooterView == EmptyView {
+extension ListView where LoadMoreView == EmptyView {
     /// PaginatedListView's initializer
     /// - Parameters:
     ///   - viewModel: ViewModel to handle data flow
@@ -10,7 +10,7 @@ extension ListView where FooterView == EmptyView {
     ///   - emptyErrorView: View when list is empty and error occured
     ///   - emptyLoadedView: View when list is loaded and have no data
     ///   - itemView: View of an Item on the list
-    ///   - footerView: View showing at the bottom of the list (ex: load more)
+    ///   - loadMoreView: View showing at the bottom of the list (ex: load more)
     init(
         viewModel: ViewModel,
         presentationStyle: ListViewPresentationStyle = .lazyVStack,
@@ -26,7 +26,7 @@ extension ListView where FooterView == EmptyView {
             emptyErrorView: emptyErrorView,
             emptyLoadedView: emptyLoadedView,
             itemView: itemView,
-            footerView: {
+            loadMoreView: { _ in
                 EmptyView()
             }
         )
