@@ -143,7 +143,7 @@ class ListViewModel<Repository: AnyListRepository>: ObservableObject {
         
         // Non-empty state
         else {
-            return .nonEmpty(status: status, isEndOfList: true)
+            return .nonEmpty(loadMoreStatus: .reachedEndOfList)
         }
     }
     

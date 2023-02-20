@@ -9,7 +9,7 @@ struct ListView<
     EmptyErrorView: View,
     EmptyLoadedView: View,
     ItemView: View,
-    FooterView: View
+    LoadMoreView: View
 >: View {
     // MARK: - Properties
     
@@ -32,7 +32,7 @@ struct ListView<
     var itemView: (Repository.ItemType) -> ItemView
     
     /// View showing at the bottom of the list
-    var footerView: () -> FooterView
+    var loadMoreView: () -> LoadMoreView
     
     // MARK: - Initializer
     
@@ -44,7 +44,7 @@ struct ListView<
     ///   - emptyErrorView: View when list is empty and error occured
     ///   - emptyLoadedView: View when list is loaded and have no data
     ///   - itemView: View of an Item on the list
-    ///   - footerView: View showing at the bottom of the list (ex: load more)
+    ///   - loadMoreView: View showing at the bottom of the list (ex: load more)
     init(
         viewModel: ViewModel,
         presentationStyle: ListViewPresentationStyle = .lazyVStack,
@@ -52,7 +52,7 @@ struct ListView<
         @ViewBuilder emptyErrorView: @escaping (Error) -> EmptyErrorView,
         @ViewBuilder emptyLoadedView: @escaping () -> EmptyLoadedView,
         @ViewBuilder itemView: @escaping (Repository.ItemType) -> ItemView,
-        @ViewBuilder footerView: @escaping () -> FooterView
+        @ViewBuilder loadMoreView: @escaping () -> LoadMoreView
     ) {
         self.viewModel = viewModel
         self.presentationStyle = presentationStyle
@@ -60,7 +60,7 @@ struct ListView<
         self.emptyErrorView = emptyErrorView
         self.emptyLoadedView = emptyLoadedView
         self.itemView = itemView
-        self.footerView = footerView
+        self.loadMoreView = loadMoreView
     }
     
     /// MARK: - View Buidler
@@ -97,7 +97,7 @@ struct ListView<
                         }
                         
                         // should fetch new item
-                        footerView()
+                        loadMoreView()
                     }
                 }
                     .refreshable {
@@ -111,7 +111,7 @@ struct ListView<
                     }
                     
                     // should fetch new items
-                    footerView()
+                    loadMoreView()
                 }
                     .refreshable {
                         await viewModel.refresh()

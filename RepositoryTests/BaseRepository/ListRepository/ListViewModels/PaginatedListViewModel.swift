@@ -63,12 +63,20 @@ class PaginatedListViewModel<Repository: AnyPaginatedListRepository>: ListViewMo
         let state = super.state
         
         switch state {
-        case .nonEmpty(let status, _):
+        case .nonEmpty:
             if repository.shouldFetch() {
-                return .nonEmpty(status: status, isEndOfList: false)
+                // Error at the end of the list
+                if let error {
+                    return .nonEmpty(loadMoreStatus: .error(error))
+                }
+                
+                // Loading at the end of the list
+                else {
+                    return .nonEmpty(loadMoreStatus: .loading)
+                }
             }
             else {
-                return .nonEmpty(status: status, isEndOfList: true)
+                return .nonEmpty(loadMoreStatus: .reachedEndOfList)
             }
         default:
             return state
