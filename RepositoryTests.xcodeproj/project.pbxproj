@@ -33,7 +33,6 @@
 		3B00C59E299F617900C92E29 /* SectionedBooksListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C59D299F617900C92E29 /* SectionedBooksListViewModel.swift */; };
 		3B00C5A0299F73D100C92E29 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3B00C59F299F73D100C92E29 /* README.md */; };
 		3B00C5A329A1DEC700C92E29 /* BooksAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5A229A1DEC700C92E29 /* BooksAPI.swift */; };
-		3B00C5A829A32FDB00C92E29 /* PaginatedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5A729A32FDB00C92E29 /* PaginatedListView.swift */; };
 		3B00C5AA29A337DE00C92E29 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5A929A337DE00C92E29 /* ListView.swift */; };
 		3B00C5AD29A33B2200C92E29 /* ListView+ConvenienceInitializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5AC29A33B2200C92E29 /* ListView+ConvenienceInitializers.swift */; };
 		3B00C5AF29A3427400C92E29 /* ListViewPresentationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5AE29A3427400C92E29 /* ListViewPresentationStyle.swift */; };
@@ -86,7 +85,6 @@
 		3B00C59D299F617900C92E29 /* SectionedBooksListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionedBooksListViewModel.swift; sourceTree = "<group>"; };
 		3B00C59F299F73D100C92E29 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		3B00C5A229A1DEC700C92E29 /* BooksAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksAPI.swift; sourceTree = "<group>"; };
-		3B00C5A729A32FDB00C92E29 /* PaginatedListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedListView.swift; sourceTree = "<group>"; };
 		3B00C5A929A337DE00C92E29 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		3B00C5AC29A33B2200C92E29 /* ListView+ConvenienceInitializers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListView+ConvenienceInitializers.swift"; sourceTree = "<group>"; };
 		3B00C5AE29A3427400C92E29 /* ListViewPresentationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewPresentationStyle.swift; sourceTree = "<group>"; };
@@ -302,7 +300,6 @@
 			children = (
 				3B00C5AE29A3427400C92E29 /* ListViewPresentationStyle.swift */,
 				3B00C5AB29A33B0F00C92E29 /* ListView */,
-				3B00C5A729A32FDB00C92E29 /* PaginatedListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -464,7 +461,6 @@
 				3B00C59C299F615E00C92E29 /* SectionedBooksListView.swift in Sources */,
 				3B00C57B299F321200C92E29 /* Repository.swift in Sources */,
 				3B00C580299F321200C92E29 /* ListViewModel.swift in Sources */,
-				3B00C5A829A32FDB00C92E29 /* PaginatedListView.swift in Sources */,
 				3B00C592299F353F00C92E29 /* SingleEntityListView.swift in Sources */,
 				3B00C586299F324F00C92E29 /* Book.swift in Sources */,
 				3B00C5AD29A33B2200C92E29 /* ListView+ConvenienceInitializers.swift in Sources */,
