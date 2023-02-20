@@ -32,7 +32,7 @@ struct ListView<
     var itemView: (Repository.ItemType) -> ItemView
     
     /// View showing at the bottom of the list
-    var loadMoreView: () -> LoadMoreView
+    var loadMoreView: (ListLoadingState.LoadMoreStatus) -> LoadMoreView
     
     // MARK: - Initializer
     
@@ -52,7 +52,7 @@ struct ListView<
         @ViewBuilder emptyErrorView: @escaping (Error) -> EmptyErrorView,
         @ViewBuilder emptyLoadedView: @escaping () -> EmptyLoadedView,
         @ViewBuilder itemView: @escaping (Repository.ItemType) -> ItemView,
-        @ViewBuilder loadMoreView: @escaping () -> LoadMoreView
+        @ViewBuilder loadMoreView: @escaping (ListLoadingState.LoadMoreStatus) -> LoadMoreView
     ) {
         self.viewModel = viewModel
         self.presentationStyle = presentationStyle
@@ -86,7 +86,7 @@ struct ListView<
                 .task {
                     await viewModel.reload()
                 }
-        case .nonEmpty:
+        case .nonEmpty(let loadMoreStatus):
             switch presentationStyle {
             case .lazyVStack:
                 ScrollView {
@@ -97,7 +97,7 @@ struct ListView<
                         }
                         
                         // should fetch new item
-                        loadMoreView()
+                        loadMoreView(loadMoreStatus)
                     }
                 }
                     .refreshable {
@@ -111,7 +111,7 @@ struct ListView<
                     }
                     
                     // should fetch new items
-                    loadMoreView()
+                    loadMoreView(loadMoreStatus)
                 }
                     .refreshable {
                         await viewModel.refresh()

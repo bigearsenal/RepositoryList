@@ -26,7 +26,7 @@ extension ListView where LoadMoreView == EmptyView {
             emptyErrorView: emptyErrorView,
             emptyLoadedView: emptyLoadedView,
             itemView: itemView,
-            loadMoreView: {
+            loadMoreView: { _ in
                 EmptyView()
             }
         )
