@@ -40,19 +40,8 @@ struct SectionedBooksListView: View {
             contentView: {
                 ForEach(viewModel.sections, id: \.id) {section in
                     Section(header: Text(section.name)) {
-                        switch section.loadingState {
-                        case .initialized, .loading where section.items.isEmpty:
-                            HStack {
-                                Spacer()
-                                ProgressView()
-                                Spacer()
-                            }
-                        case .error where section.items.isEmpty:
-                            Text("Error")
-                        default:
-                            ForEach(section.items) { book in
-                                Text(book.name)
-                            }
+                        ForEach(section.items) { book in
+                            Text(book.name)
                         }
                     }
                 }
