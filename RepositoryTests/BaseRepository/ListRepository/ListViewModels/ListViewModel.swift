@@ -119,25 +119,24 @@ class ListViewModel<Repository: AnyListRepository>: ObservableObject {
     
     /// List loading state
     var state: ListLoadingState {
-        let status: ListLoadingState.Status
-        
-        // empty loading
-        if isLoading {
-            status = .loading
-        }
-        
-        // empty error
-        else if let error {
-            status = .error(error)
-        }
-        
-        // empty
-        else {
-            status = .loaded
-        }
-        
         // Empty state
         if data.isEmpty {
+            let status: ListLoadingState.Status
+            
+            // empty loading
+            if isLoading {
+                status = .loading
+            }
+            
+            // empty error
+            else if let error {
+                status = .error(error)
+            }
+            
+            // empty
+            else {
+                status = .loaded
+            }
             return .empty(status)
         }
         
