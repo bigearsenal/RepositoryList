@@ -11,10 +11,12 @@ struct OnePagedBooksListView: View {
     @StateObject var viewModel = ListViewModel(
         repository: OnePagedBooksRepository()
     )
+    @State var presentationStyle: ListViewPresentationStyle = .list
     
     var body: some View {
         ListView(
             viewModel: viewModel,
+            presentationStyle: presentationStyle,
             emptyLoadingView: {
                 VStack {
                     Spacer()
@@ -27,20 +29,30 @@ struct OnePagedBooksListView: View {
                 }
             },
             emptyErrorView: { _ in
-                VStack {
-                    Spacer()
-                    Button("Something is broken. Tap to try again") {
+                VStack(spacing: 20) {
+                    Image(systemName: "wrongwaysign")
+                        .font(.largeTitle)
+                    
+                    Text("Something went wrong")
+                    
+                    Button("Retry") {
                         Task {
                             await viewModel.reload()
                         }
                     }
-                    Spacer()
                 }
             },
             emptyLoadedView: {
-                Button("Empty") {
-                    Task {
-                        await viewModel.reload()
+                VStack(spacing: 20) {
+                    Image(systemName: "binoculars")
+                        .font(.largeTitle)
+                    
+                    Text("Nothing found")
+                    
+                    Button("Retry") {
+                        Task {
+                            await viewModel.reload()
+                        }
                     }
                 }
             },
@@ -48,6 +60,18 @@ struct OnePagedBooksListView: View {
                 Text(book.name)
             }
         )
+            .overlay(
+                HStack {
+                    Spacer()
+                    VStack {
+                        Spacer()
+                        Button("ListViewPresentationStyle: \(presentationStyle.rawValue)") {
+                            if presentationStyle == .list { presentationStyle = .lazyVStack }
+                            else { presentationStyle = .list }
+                        }
+                    }
+                }.padding()
+            )
     }
 }
 

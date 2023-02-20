@@ -74,6 +74,7 @@ struct PaginatedListView<
     var body: some View {
         ListView(
             viewModel: viewModel,
+            presentationStyle: .list,
             emptyLoadingView: emptyLoadingView,
             emptyErrorView: emptyErrorView,
             emptyLoadedView: emptyLoadedView,

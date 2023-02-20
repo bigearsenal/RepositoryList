@@ -16,6 +16,9 @@ struct ListView<
     /// ViewModel that handle data flow
     @ObservedObject var viewModel: ViewModel
     
+    /// Type of list
+    let presentationStyle: ListViewPresentationStyle
+    
     /// View to handle state when list is empty and is loading, for example ProgressView or Skeleton
     var emptyLoadingView: () -> EmptyLoadingView
     
@@ -36,6 +39,7 @@ struct ListView<
     /// PaginatedListView's initializer
     /// - Parameters:
     ///   - viewModel: ViewModel to handle data flow
+    ///   - presentationStyle: Presenation type of list
     ///   - emptyLoadingView: View when list is empty and is loading (ProgressView or Skeleton)
     ///   - emptyErrorView: View when list is empty and error occured
     ///   - emptyLoadedView: View when list is loaded and have no data
@@ -43,6 +47,7 @@ struct ListView<
     ///   - footerView: View showing at the bottom of the list (ex: load more)
     init(
         viewModel: ViewModel,
+        presentationStyle: ListViewPresentationStyle = .lazyVStack,
         @ViewBuilder emptyLoadingView: @escaping () -> EmptyLoadingView,
         @ViewBuilder emptyErrorView: @escaping (Error) -> EmptyErrorView,
         @ViewBuilder emptyLoadedView: @escaping () -> EmptyLoadedView,
@@ -50,6 +55,7 @@ struct ListView<
         @ViewBuilder footerView: @escaping () -> FooterView
     ) {
         self.viewModel = viewModel
+        self.presentationStyle = presentationStyle
         self.emptyLoadingView = emptyLoadingView
         self.emptyErrorView = emptyErrorView
         self.emptyLoadedView = emptyLoadedView
@@ -90,17 +96,35 @@ struct ListView<
         
         // Non-empty state
         else {
-            List {
-                // List of items
-                ForEach(viewModel.data, id: \.id) { item in
-                    itemView(item)
+            switch presentationStyle {
+            case .lazyVStack:
+                ScrollView {
+                    LazyVStack {
+                        // List of items
+                        ForEach(viewModel.data, id: \.id) { item in
+                            itemView(item)
+                        }
+                        
+                        // should fetch new item
+                        footerView()
+                    }
                 }
-                
-                // should fetch new item
-                footerView()
-            }
-            .refreshable {
-                await viewModel.refresh()
+                    .refreshable {
+                        await viewModel.refresh()
+                    }
+            case .list:
+                List {
+                    // List of items
+                    ForEach(viewModel.data, id: \.id) { item in
+                        itemView(item)
+                    }
+                    
+                    // should fetch new items
+                    footerView()
+                }
+                    .refreshable {
+                        await viewModel.refresh()
+                    }
             }
         }
     }

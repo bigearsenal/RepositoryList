@@ -13,6 +13,7 @@ extension ListView where FooterView == EmptyView {
     ///   - footerView: View showing at the bottom of the list (ex: load more)
     init(
         viewModel: ViewModel,
+        presentationStyle: ListViewPresentationStyle = .lazyVStack,
         @ViewBuilder emptyLoadingView: @escaping () -> EmptyLoadingView,
         @ViewBuilder emptyErrorView: @escaping (Error) -> EmptyErrorView,
         @ViewBuilder emptyLoadedView: @escaping () -> EmptyLoadedView,
@@ -20,6 +21,7 @@ extension ListView where FooterView == EmptyView {
     ) {
         self.init(
             viewModel: viewModel,
+            presentationStyle: presentationStyle,
             emptyLoadingView: emptyLoadingView,
             emptyErrorView: emptyErrorView,
             emptyLoadedView: emptyLoadedView,

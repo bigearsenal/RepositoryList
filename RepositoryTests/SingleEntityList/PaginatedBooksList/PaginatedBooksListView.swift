@@ -27,20 +27,30 @@ struct PaginatedBooksListView: View {
                 }
             },
             emptyErrorView: { _ in
-                VStack {
-                    Spacer()
-                    Button("Something is broken. Tap to try again") {
+                VStack(spacing: 20) {
+                    Image(systemName: "wrongwaysign")
+                        .font(.largeTitle)
+                    
+                    Text("Something went wrong")
+                    
+                    Button("Retry") {
                         Task {
                             await viewModel.reload()
                         }
                     }
-                    Spacer()
                 }
             },
             emptyLoadedView: {
-                Button("Empty") {
-                    Task {
-                        await viewModel.reload()
+                VStack(spacing: 20) {
+                    Image(systemName: "binoculars")
+                        .font(.largeTitle)
+                    
+                    Text("Nothing found")
+                    
+                    Button("Retry") {
+                        Task {
+                            await viewModel.reload()
+                        }
                     }
                 }
             },
@@ -69,10 +79,6 @@ struct PaginatedBooksListView: View {
                     Spacer()
                     VStack {
                         Spacer()
-                        if viewModel.error != nil {
-                            Text("Error!")
-                                .foregroundColor(.red)
-                        }
                         Text("Page: \(viewModel.repository.currentPage)")
                     }
                 }.padding()
