@@ -10,11 +10,6 @@ class ListViewModel<Repository: AnyListRepository>: ObservableObject {
     /// Type of the item
     typealias ItemType = Repository.ItemType
     
-    // MARK: - Private properties
-    
-    /// Initial data for initializing state
-    private let initialData: [ItemType]
-    
     // MARK: - Public properties
     
     /// Repository that is responsible for fetching data
@@ -42,17 +37,19 @@ class ListViewModel<Repository: AnyListRepository>: ObservableObject {
         initialData: [ItemType] = [],
         repository: Repository
     ) {
-        self.initialData = initialData
         self.repository = repository
         
-        flush()
+        // feed data with initial data
+        if !initialData.isEmpty {
+            handleNewData(initialData)
+        }
     }
 
     // MARK: - Actions
 
     /// Erase data and reset repository to its initial state
     func flush() {
-        data = initialData
+        data = []
         state = .initialized
         error = nil
     }
