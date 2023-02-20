@@ -20,8 +20,12 @@ struct BooksListSection: ListSection {
     }
 }
 
-// Make ListViewModel conform to SectionsConvertibleListViewModel
-extension PaginatedListViewModel<PaginatedBooksListRepository>: SectionsConvertibleListViewModel {
+// Create view model
+
+final class SectionedBooksListViewModel: PaginatedListViewModel<PaginatedBooksListRepository> {}
+
+// Conform to SectionsConvertibleListViewModel
+extension SectionedBooksListViewModel: SectionsConvertibleListViewModel {
     var sections: [BooksListSection] {
         let chunkedData = data
             .chunked(into: 20)
@@ -43,7 +47,7 @@ extension PaginatedListViewModel<PaginatedBooksListRepository>: SectionsConverti
 
 // Create ViewModel
 
-extension Array {
+private extension Array {
     func chunked(into size: Int) -> [[Element]] {
         return stride(from: 0, to: count, by: size).map {
             Array(self[$0 ..< Swift.min($0 + size, count)])

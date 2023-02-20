@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SectionedBooksListView: View {
     
-    @StateObject var viewModel = PaginatedListViewModel(
+    @StateObject var viewModel = SectionedBooksListViewModel(
         repository: PaginatedBooksListRepository()
     )
     
