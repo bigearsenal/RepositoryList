@@ -11,12 +11,14 @@ struct OnePagedBooksListView: View {
     @StateObject var viewModel = ListViewModel(
         repository: OnePagedBooksRepository()
     )
-    @State var presentationStyle: ListViewPresentationStyle = .list
+    
+    @State var selectedPresentationStyle = ListViewPresentationStyle.list
+    var presentationStyles: [ListViewPresentationStyle] = [.list, .lazyVStack]
     
     var body: some View {
         ListView(
             viewModel: viewModel,
-            presentationStyle: presentationStyle,
+            presentationStyle: selectedPresentationStyle,
             emptyLoadingView: {
                 VStack {
                     Spacer()
@@ -61,15 +63,17 @@ struct OnePagedBooksListView: View {
             }
         )
             .overlay(
-                HStack {
+                VStack {
                     Spacer()
-                    VStack {
-                        Spacer()
-                        Button("ListViewPresentationStyle: \(presentationStyle.rawValue)") {
-                            if presentationStyle == .list { presentationStyle = .lazyVStack }
-                            else { presentationStyle = .list }
+                    // Picker
+                    Picker("PresentationStyle", selection: $selectedPresentationStyle) {
+                        ForEach(presentationStyles, id: \.self) { item in
+                            Text(item.rawValue)
+                                .tag(item)
                         }
                     }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .padding(.horizontal)
                 }.padding()
             )
     }
