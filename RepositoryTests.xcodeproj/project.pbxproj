@@ -41,6 +41,7 @@
 		3B00C5B629A366F900C92E29 /* NothingFoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5B529A366F900C92E29 /* NothingFoundView.swift */; };
 		3B00C5B829A3675400C92E29 /* BookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5B729A3675400C92E29 /* BookView.swift */; };
 		3B00C5BA29A378F000C92E29 /* LoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5B929A378F000C92E29 /* LoadMoreView.swift */; };
+		3B00C5BC29A3847600C92E29 /* BooksListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5BB29A3847600C92E29 /* BooksListSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		3B00C5B529A366F900C92E29 /* NothingFoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NothingFoundView.swift; sourceTree = "<group>"; };
 		3B00C5B729A3675400C92E29 /* BookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookView.swift; sourceTree = "<group>"; };
 		3B00C5B929A378F000C92E29 /* LoadMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreView.swift; sourceTree = "<group>"; };
+		3B00C5BB29A3847600C92E29 /* BooksListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksListSection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				3B00C585299F324F00C92E29 /* Book.swift */,
+				3B00C5BB29A3847600C92E29 /* BooksListSection.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 				3B00C59A299F3C4C00C92E29 /* PaginatedBooksListView.swift in Sources */,
 				3B00C57C299F321200C92E29 /* LimitOffsetPaginationStrategy.swift in Sources */,
 				3B00C543299F31C200C92E29 /* RepositoryTestsApp.swift in Sources */,
+				3B00C5BC29A3847600C92E29 /* BooksListSection.swift in Sources */,
 				3B00C596299F39EF00C92E29 /* OnePagedBooksListView.swift in Sources */,
 				3B00C59C299F615E00C92E29 /* SectionedBooksListView.swift in Sources */,
 				3B00C57B299F321200C92E29 /* Repository.swift in Sources */,
