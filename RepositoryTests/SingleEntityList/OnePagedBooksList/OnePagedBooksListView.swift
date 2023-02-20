@@ -39,8 +39,10 @@ struct OnePagedBooksListView: View {
                     }
                 }
             },
-            itemView: { _, book in
-                BookView(book: book)
+            contentView: {
+                ForEach(viewModel.data) { book in
+                    BookView(book: book)
+                }
             }
         )
             .overlay(

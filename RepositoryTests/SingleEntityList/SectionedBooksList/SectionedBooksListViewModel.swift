@@ -22,21 +22,22 @@ struct BooksListSection: ListSection {
 
 // Make ListViewModel conform to SectionsConvertibleListViewModel
 extension PaginatedListViewModel<PaginatedBooksListRepository>: SectionsConvertibleListViewModel {
-    var sectionsPublisher: AnyPublisher<[any ListSection], Never> {
-        $data
-            .map { items in
-                let chunkedArray = items.chunked(into: 20)
-                return chunkedArray.enumerated()
-                    .map { [weak self] index, items in
-                        BooksListSection(
-                            id: "\(index + 1)",
-                            items: items,
-                            loadingState: .loaded,
-                            error: self?.error?.localizedDescription
-                        )
-                    }
+    var sections: [BooksListSection] {
+        let chunkedData = data
+            .chunked(into: 20)
+            .enumerated()
+        
+        print(chunkedData)
+        
+        return chunkedData
+            .map { [weak self] index, items in
+                BooksListSection(
+                    id: "\(index + 1)",
+                    items: items,
+                    loadingState: .loaded,
+                    error: self?.error?.localizedDescription
+                )
             }
-            .eraseToAnyPublisher()
     }
 }
 

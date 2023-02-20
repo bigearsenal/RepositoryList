@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 
 /// Convenience ListView's initializers
-extension ListView where LoadMoreView == EmptyView {
+extension ListView where LoadMoreView == EmptyView  {
     /// PaginatedListView's initializer
     /// - Parameters:
     ///   - viewModel: ViewModel to handle data flow
@@ -17,7 +17,7 @@ extension ListView where LoadMoreView == EmptyView {
         @ViewBuilder emptyLoadingView: @escaping () -> EmptyLoadingView,
         @ViewBuilder emptyErrorView: @escaping (Error) -> EmptyErrorView,
         @ViewBuilder emptyLoadedView: @escaping () -> EmptyLoadedView,
-        @ViewBuilder itemView: @escaping (Int, Repository.ItemType) -> ItemView
+        @ViewBuilder contentView: @escaping () -> ContentView
     ) {
         self.init(
             viewModel: viewModel,
@@ -25,7 +25,7 @@ extension ListView where LoadMoreView == EmptyView {
             emptyLoadingView: emptyLoadingView,
             emptyErrorView: emptyErrorView,
             emptyLoadedView: emptyLoadedView,
-            itemView: itemView,
+            contentView: contentView,
             loadMoreView: { _ in
                 EmptyView()
             }

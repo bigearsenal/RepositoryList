@@ -8,7 +8,7 @@ struct ListView<
     EmptyLoadingView: View,
     EmptyErrorView: View,
     EmptyLoadedView: View,
-    ItemView: View,
+    ContentView: View,
     LoadMoreView: View
 >: View {
     // MARK: - Properties
@@ -28,8 +28,8 @@ struct ListView<
     /// View to handle state when list is loaded and have no data
     var emptyLoadedView: () -> EmptyLoadedView
     
-    /// View of an item of the list
-    var itemView: (Int, Repository.ItemType) -> ItemView
+    /// View of an section of the list
+    var contentView: () -> ContentView
     
     /// View showing at the bottom of the list
     var loadMoreView: (ListLoadingState.LoadMoreStatus) -> LoadMoreView
@@ -43,7 +43,7 @@ struct ListView<
     ///   - emptyLoadingView: View when list is empty and is loading (ProgressView or Skeleton)
     ///   - emptyErrorView: View when list is empty and error occured
     ///   - emptyLoadedView: View when list is loaded and have no data
-    ///   - itemView: View of an Item on the list
+    ///   - contentView: Content view of the list
     ///   - loadMoreView: View showing at the bottom of the list (ex: load more)
     init(
         viewModel: ViewModel,
@@ -51,7 +51,7 @@ struct ListView<
         @ViewBuilder emptyLoadingView: @escaping () -> EmptyLoadingView,
         @ViewBuilder emptyErrorView: @escaping (Error) -> EmptyErrorView,
         @ViewBuilder emptyLoadedView: @escaping () -> EmptyLoadedView,
-        @ViewBuilder itemView: @escaping (Int, Repository.ItemType) -> ItemView,
+        @ViewBuilder contentView: @escaping () -> ContentView,
         @ViewBuilder loadMoreView: @escaping (ListLoadingState.LoadMoreStatus) -> LoadMoreView
     ) {
         self.viewModel = viewModel
@@ -59,7 +59,8 @@ struct ListView<
         self.emptyLoadingView = emptyLoadingView
         self.emptyErrorView = emptyErrorView
         self.emptyLoadedView = emptyLoadedView
-        self.itemView = itemView
+        self.contentView = contentView
+        self.contentView = contentView
         self.loadMoreView = loadMoreView
     }
     
@@ -92,9 +93,8 @@ struct ListView<
                 ScrollView {
                     LazyVStack {
                         // List of items
-                        ForEach(Array(zip(viewModel.data.indices, viewModel.data)), id: \.0) { index, item in
-                            itemView(index, item)
-                        }
+                        contentView()
+                        
                         
                         // should fetch new item
                         loadMoreView(loadMoreStatus)
@@ -106,9 +106,7 @@ struct ListView<
             case .list:
                 List {
                     // List of items
-                    ForEach(Array(zip(viewModel.data.indices, viewModel.data)), id: \.0) { index, item in
-                        itemView(index, item)
-                    }
+                    contentView()
                     
                     // should fetch new items
                     loadMoreView(loadMoreStatus)

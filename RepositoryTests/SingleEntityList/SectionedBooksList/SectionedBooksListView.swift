@@ -8,53 +8,73 @@
 import SwiftUI
 
 struct SectionedBooksListView: View {
-    @State var sections: [BooksListSection] = []
+    
     @StateObject var viewModel = PaginatedListViewModel(
         repository: PaginatedBooksListRepository()
     )
     
     var body: some View {
-        List {
-//            ForEach(sections, id: \.id) {section in
-//                Section(header: Text(section.name)) {
-//                    switch section.loadingState {
-//                    case .initialized, .loading where section.items.isEmpty:
-//                        HStack {
-//                            Spacer()
-//                            ProgressView()
-//                            Spacer()
-//                        }
-//                    case .error where section.items.isEmpty:
-//                        Text("Error")
-//                    default:
-//                        ForEach(section.items) { book in
-//                            Text(book.name)
-//                        }
-//                    }
-//                }
-//            }
-//            
-//            if viewModel.repository.shouldFetch() {
-//                if viewModel.data.isEmpty == false {
-//                    HStack {
-//                        if viewModel.error != nil {
-//                            Button("Error fetching more item... Tap to try again") {
-//                                Task {
-//                                    await viewModel.fetchNext()
-//                                }
-//                            }
-//                        } else {
-//                            Text("Fetching more...")
-//                                .task {
-//                                    await viewModel.fetchNext()
-//                                }
-//                        }
-//                    }
-//                }
-//            } else {
-//                Text("End of list")
-//            }
-        }
+        ListView(
+            viewModel: viewModel,
+            presentationStyle: .list,
+            emptyLoadingView: {
+                // Skeleton may appear here
+                LoadingView()
+            },
+            emptyErrorView: { _ in
+                // Error like network error may appear here
+                GeneralErrorView(reloadAction: {
+                    Task {
+                        await viewModel.reload()
+                    }
+                })
+            },
+            emptyLoadedView: {
+                // Nothing found scene may appear here
+                NothingFoundView {
+                    Task {
+                        await viewModel.reload()
+                    }
+                }
+            },
+            contentView: {
+                ForEach(viewModel.sections, id: \.id) {section in
+                    Section(header: Text(section.name)) {
+                        switch section.loadingState {
+                        case .initialized, .loading where section.items.isEmpty:
+                            HStack {
+                                Spacer()
+                                ProgressView()
+                                Spacer()
+                            }
+                        case .error where section.items.isEmpty:
+                            Text("Error")
+                        default:
+                            ForEach(section.items) { book in
+                                Text(book.name)
+                            }
+                        }
+                    }
+                }
+            },
+            loadMoreView: { loadMoreStatus in
+                switch loadMoreStatus {
+                case .loading:
+                    Text("Fetching more...")
+                        .task {
+                            await viewModel.fetchNext()
+                        }
+                case .reachedEndOfList:
+                    Text("End of list")
+                case .error:
+                    Button("Error fetching more item... Tap to try again") {
+                        Task {
+                            await viewModel.fetchNext()
+                        }
+                    }
+                }
+            }
+        )
         .overlay(
             HStack {
                 Spacer()
@@ -73,9 +93,6 @@ struct SectionedBooksListView: View {
         }
         .refreshable {
             await viewModel.refresh()
-        }
-        .onReceive(viewModel.sectionsPublisher) { sections in
-            self.sections = sections as! [BooksListSection]
         }
     }
 }
