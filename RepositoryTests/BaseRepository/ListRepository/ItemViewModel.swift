@@ -9,11 +9,6 @@ class ItemViewModel<Repository: AnyRepository>: ObservableObject {
     /// Type of the item
     typealias ItemType = Repository.ItemType
     
-    // MARK: - Private properties
-    
-    /// Initial data for initializing state
-    private let initialData: ItemType?
-    
     // MARK: - Public properties
     
     /// Repository that is responsible for fetching data
@@ -42,16 +37,17 @@ class ItemViewModel<Repository: AnyRepository>: ObservableObject {
         initialData: ItemType?,
         repository: Repository
     ) {
-        self.initialData = initialData
         self.repository = repository
-        data = initialData
+        
+        // feed data with initial data
+        handleNewData(initialData)
     }
     
     // MARK: - Actions
 
     /// Erase data and reset repository to its initial state
     func flush() {
-        data = initialData
+        data = nil
         state = .initialized
         error = nil
     }
