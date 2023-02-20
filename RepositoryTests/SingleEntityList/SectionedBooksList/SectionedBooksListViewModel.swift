@@ -31,8 +31,6 @@ extension SectionedBooksListViewModel: SectionsConvertibleListViewModel {
             .chunked(into: 20)
             .enumerated()
         
-        print(chunkedData)
-        
         return chunkedData
             .map { [weak self] index, items in
                 BooksListSection(

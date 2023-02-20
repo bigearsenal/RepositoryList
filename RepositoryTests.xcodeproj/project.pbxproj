@@ -40,6 +40,7 @@
 		3B00C5B429A3668100C92E29 /* GeneralErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5B329A3668100C92E29 /* GeneralErrorView.swift */; };
 		3B00C5B629A366F900C92E29 /* NothingFoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5B529A366F900C92E29 /* NothingFoundView.swift */; };
 		3B00C5B829A3675400C92E29 /* BookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5B729A3675400C92E29 /* BookView.swift */; };
+		3B00C5BA29A378F000C92E29 /* LoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5B929A378F000C92E29 /* LoadMoreView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		3B00C5B329A3668100C92E29 /* GeneralErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralErrorView.swift; sourceTree = "<group>"; };
 		3B00C5B529A366F900C92E29 /* NothingFoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NothingFoundView.swift; sourceTree = "<group>"; };
 		3B00C5B729A3675400C92E29 /* BookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookView.swift; sourceTree = "<group>"; };
+		3B00C5B929A378F000C92E29 /* LoadMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -329,6 +331,7 @@
 				3B00C5B329A3668100C92E29 /* GeneralErrorView.swift */,
 				3B00C5B529A366F900C92E29 /* NothingFoundView.swift */,
 				3B00C5B729A3675400C92E29 /* BookView.swift */,
+				3B00C5B929A378F000C92E29 /* LoadMoreView.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -491,6 +494,7 @@
 				3B00C57E299F321200C92E29 /* ItemViewModel.swift in Sources */,
 				3B00C581299F321200C92E29 /* PaginatedListViewModel.swift in Sources */,
 				3B00C5A329A1DEC700C92E29 /* BooksAPI.swift in Sources */,
+				3B00C5BA29A378F000C92E29 /* LoadMoreView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

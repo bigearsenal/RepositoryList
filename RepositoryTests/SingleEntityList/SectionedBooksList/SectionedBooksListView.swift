@@ -46,21 +46,9 @@ struct SectionedBooksListView: View {
                     }
                 }
             },
-            loadMoreView: { loadMoreStatus in
-                switch loadMoreStatus {
-                case .loading:
-                    Text("Fetching more...")
-                        .task {
-                            await viewModel.fetchNext()
-                        }
-                case .reachedEndOfList:
-                    Text("End of list")
-                case .error:
-                    Button("Error fetching more item... Tap to try again") {
-                        Task {
-                            await viewModel.fetchNext()
-                        }
-                    }
+            loadMoreView: { status in
+                LoadMoreView(loadMoreStatus: status) {
+                    await viewModel.fetchNext()
                 }
             }
         )
