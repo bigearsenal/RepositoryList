@@ -189,11 +189,10 @@
 		3B00C56C299F321200C92E29 /* BaseRepository */ = {
 			isa = PBXGroup;
 			children = (
-				3B00C5A629A32FC900C92E29 /* Views */,
-				3B00C56D299F321200C92E29 /* Repository */,
-				3B00C56F299F321200C92E29 /* PaginationStrategy */,
-				3B00C572299F321200C92E29 /* ListRepository */,
 				3B00C578299F321200C92E29 /* Models */,
+				3B00C5A629A32FC900C92E29 /* Views */,
+				3B00C572299F321200C92E29 /* ViewModels */,
+				3B00C56D299F321200C92E29 /* Repository */,
 			);
 			path = BaseRepository;
 			sourceTree = "<group>";
@@ -201,6 +200,7 @@
 		3B00C56D299F321200C92E29 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				3B00C56F299F321200C92E29 /* PaginationStrategy */,
 				3B00C56E299F321200C92E29 /* Repository.swift */,
 			);
 			path = Repository;
@@ -215,13 +215,13 @@
 			path = PaginationStrategy;
 			sourceTree = "<group>";
 		};
-		3B00C572299F321200C92E29 /* ListRepository */ = {
+		3B00C572299F321200C92E29 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				3B00C573299F321200C92E29 /* ItemViewModel.swift */,
 				3B00C574299F321200C92E29 /* ListViewModels */,
 			);
-			path = ListRepository;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		3B00C574299F321200C92E29 /* ListViewModels */ = {
