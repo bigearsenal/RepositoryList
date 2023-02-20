@@ -29,7 +29,7 @@ struct ListView<
     var emptyLoadedView: () -> EmptyLoadedView
     
     /// View of an item of the list
-    var itemView: (Repository.ItemType) -> ItemView
+    var itemView: (Int, Repository.ItemType) -> ItemView
     
     /// View showing at the bottom of the list
     var loadMoreView: (ListLoadingState.LoadMoreStatus) -> LoadMoreView
@@ -51,7 +51,7 @@ struct ListView<
         @ViewBuilder emptyLoadingView: @escaping () -> EmptyLoadingView,
         @ViewBuilder emptyErrorView: @escaping (Error) -> EmptyErrorView,
         @ViewBuilder emptyLoadedView: @escaping () -> EmptyLoadedView,
-        @ViewBuilder itemView: @escaping (Repository.ItemType) -> ItemView,
+        @ViewBuilder itemView: @escaping (Int, Repository.ItemType) -> ItemView,
         @ViewBuilder loadMoreView: @escaping (ListLoadingState.LoadMoreStatus) -> LoadMoreView
     ) {
         self.viewModel = viewModel
@@ -92,8 +92,8 @@ struct ListView<
                 ScrollView {
                     LazyVStack {
                         // List of items
-                        ForEach(viewModel.data, id: \.id) { item in
-                            itemView(item)
+                        ForEach(Array(zip(viewModel.data.indices, viewModel.data)), id: \.0) { index, item in
+                            itemView(index, item)
                         }
                         
                         // should fetch new item
@@ -106,8 +106,8 @@ struct ListView<
             case .list:
                 List {
                     // List of items
-                    ForEach(viewModel.data, id: \.id) { item in
-                        itemView(item)
+                    ForEach(Array(zip(viewModel.data.indices, viewModel.data)), id: \.0) { index, item in
+                        itemView(index, item)
                     }
                     
                     // should fetch new items

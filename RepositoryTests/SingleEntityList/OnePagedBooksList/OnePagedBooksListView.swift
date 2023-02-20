@@ -39,7 +39,7 @@ struct OnePagedBooksListView: View {
                     }
                 }
             },
-            itemView: { book in
+            itemView: { _, book in
                 BookView(book: book)
             }
         )

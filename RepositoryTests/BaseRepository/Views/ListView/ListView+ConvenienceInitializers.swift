@@ -17,7 +17,7 @@ extension ListView where LoadMoreView == EmptyView {
         @ViewBuilder emptyLoadingView: @escaping () -> EmptyLoadingView,
         @ViewBuilder emptyErrorView: @escaping (Error) -> EmptyErrorView,
         @ViewBuilder emptyLoadedView: @escaping () -> EmptyLoadedView,
-        @ViewBuilder itemView: @escaping (Repository.ItemType) -> ItemView
+        @ViewBuilder itemView: @escaping (Int, Repository.ItemType) -> ItemView
     ) {
         self.init(
             viewModel: viewModel,

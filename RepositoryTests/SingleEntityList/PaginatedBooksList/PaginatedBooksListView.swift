@@ -36,7 +36,7 @@ struct PaginatedBooksListView: View {
                     }
                 }
             },
-            itemView: { book in
+            itemView: { _, book in
                 BookView(book: book)
             },
             loadMoreView: { loadMoreStatus in
