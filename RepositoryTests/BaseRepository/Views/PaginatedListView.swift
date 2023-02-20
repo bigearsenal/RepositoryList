@@ -18,6 +18,9 @@ struct PaginatedListView<
     /// ViewModel that handle data flow
     @ObservedObject var viewModel: ViewModel
     
+    /// Type of list
+    let presentationStyle: ListViewPresentationStyle
+    
     /// View to handle state when list is empty and is loading, for example ProgressView or Skeleton
     var emptyLoadingView: () -> EmptyLoadingView
     
@@ -44,6 +47,7 @@ struct PaginatedListView<
     /// PaginatedListView's initializer
     /// - Parameters:
     ///   - viewModel: ViewModel to handle data flow
+    ///   - presentationStyle: Presenation type of the list   
     ///   - emptyLoadingView: View when list is empty and is loading (ProgressView or Skeleton)
     ///   - emptyErrorView: View when list is empty and error occured
     ///   - emptyLoadedView: View when list is loaded and have no data
@@ -53,6 +57,7 @@ struct PaginatedListView<
     ///   - endOfListView: View to indicate if no more data to load (show at the end of the list)
     init(
         viewModel: ViewModel,
+        presentationStyle: ListViewPresentationStyle = .lazyVStack,
         @ViewBuilder emptyLoadingView: @escaping () -> EmptyLoadingView,
         @ViewBuilder emptyErrorView: @escaping (Error) -> EmptyErrorView,
         @ViewBuilder emptyLoadedView: @escaping () -> EmptyLoadedView,
@@ -62,6 +67,7 @@ struct PaginatedListView<
         @ViewBuilder endOfListView: @escaping () -> EndOfListView
     ) {
         self.viewModel = viewModel
+        self.presentationStyle = presentationStyle
         self.emptyLoadingView = emptyLoadingView
         self.emptyErrorView = emptyErrorView
         self.emptyLoadedView = emptyLoadedView
@@ -74,7 +80,7 @@ struct PaginatedListView<
     var body: some View {
         ListView(
             viewModel: viewModel,
-            presentationStyle: .list,
+            presentationStyle: presentationStyle,
             emptyLoadingView: emptyLoadingView,
             emptyErrorView: emptyErrorView,
             emptyLoadedView: emptyLoadedView,

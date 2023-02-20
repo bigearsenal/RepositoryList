@@ -15,6 +15,7 @@ struct PaginatedBooksListView: View {
     var body: some View {
         PaginatedListView(
             viewModel: viewModel,
+            presentationStyle: .list,
             emptyLoadingView: {
                 VStack {
                     Spacer()
@@ -47,7 +48,7 @@ struct PaginatedBooksListView: View {
                     
                     Text("Nothing found")
                     
-                    Button("Retry") {
+                    Button("Reload") {
                         Task {
                             await viewModel.reload()
                         }

@@ -51,7 +51,7 @@ struct OnePagedBooksListView: View {
                     
                     Text("Nothing found")
                     
-                    Button("Retry") {
+                    Button("Reload") {
                         Task {
                             await viewModel.reload()
                         }

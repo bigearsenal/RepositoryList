@@ -39,7 +39,7 @@ struct ListView<
     /// PaginatedListView's initializer
     /// - Parameters:
     ///   - viewModel: ViewModel to handle data flow
-    ///   - presentationStyle: Presenation type of list
+    ///   - presentationStyle: Presenation type of the list
     ///   - emptyLoadingView: View when list is empty and is loading (ProgressView or Skeleton)
     ///   - emptyErrorView: View when list is empty and error occured
     ///   - emptyLoadedView: View when list is loaded and have no data
