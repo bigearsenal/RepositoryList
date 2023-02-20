@@ -11,3 +11,13 @@ enum LoadingState {
     /// Error
     case error
 }
+
+enum ListLoadingState {
+    enum Status {
+        case loading
+        case loaded
+        case error(Error)
+    }
+    case empty(Status)
+    case nonEmpty(status: Status, isEndOfList: Bool)
+}

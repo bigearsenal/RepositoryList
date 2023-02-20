@@ -58,6 +58,23 @@ class PaginatedListViewModel<Repository: AnyPaginatedListRepository>: ListViewMo
         await request()
     }
     
+    /// List loading state
+    override var state: ListLoadingState {
+        let state = super.state
+        
+        switch state {
+        case .nonEmpty(let status, _):
+            if repository.shouldFetch() {
+                return .nonEmpty(status: status, isEndOfList: false)
+            }
+            else {
+                return .nonEmpty(status: status, isEndOfList: true)
+            }
+        default:
+            return state
+        }
+    }
+    
 //    func updateFirstPage(onSuccessFilterNewData: (([ItemType]) -> [ItemType])? = nil) {
 //        let originalOffset = offset
 //        offset = 0

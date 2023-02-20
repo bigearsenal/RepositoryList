@@ -86,20 +86,18 @@ struct PaginatedListView<
             emptyLoadedView: emptyLoadedView,
             itemView: itemView,
             footerView: {
-                if viewModel.repository.shouldFetch() {
-                    // Error at the end of the list
-                    if let error = viewModel.error {
+                switch viewModel.state {
+                case let .nonEmpty(status, isEndOfList):
+                    switch status {
+                    case .error(let error):
                         nonEmptyErrorView(error)
-                    }
-                    
-                    // Loading at the end of the list
-                    else {
+                    case .loaded where isEndOfList == true:
+                        endOfListView()
+                    default:
                         nonEmptyLoadingView()
                     }
-                }
-                
-                else {
-                    endOfListView()
+                default:
+                    EmptyView()
                 }
             }
         )

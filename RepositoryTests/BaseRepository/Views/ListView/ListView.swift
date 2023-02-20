@@ -67,24 +67,18 @@ struct ListView<
     
     /// Body of the view
     var body: some View {
-        // Empty state
-        if viewModel.data.isEmpty {
+        switch viewModel.state {
+        case .empty(let status):
             VStack {
                 Spacer()
                 
-                // initial loading
-                if viewModel.isLoading {
+                switch status {
+                case .loading:
                     emptyLoadingView()
-                }
-                
-                // initial error
-                else if let error = viewModel.error {
-                    emptyErrorView(error)
-                }
-                
-                // empty view
-                else {
+                case .loaded:
                     emptyLoadedView()
+                case .error(let error):
+                    emptyErrorView(error)
                 }
                 
                 Spacer()
@@ -92,10 +86,7 @@ struct ListView<
                 .task {
                     await viewModel.reload()
                 }
-        }
-        
-        // Non-empty state
-        else {
+        case .nonEmpty:
             switch presentationStyle {
             case .lazyVStack:
                 ScrollView {
