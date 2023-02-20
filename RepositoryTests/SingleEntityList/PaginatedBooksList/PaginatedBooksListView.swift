@@ -18,48 +18,26 @@ struct PaginatedBooksListView: View {
             presentationStyle: .list,
             emptyLoadingView: {
                 // Skeleton may appear here
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        ProgressView()
-                        Spacer()
-                    }
-                    Spacer()
-                }
+                LoadingView()
             },
             emptyErrorView: { _ in
                 // Error like network error may appear here
-                VStack(spacing: 20) {
-                    Image(systemName: "wrongwaysign")
-                        .font(.largeTitle)
-                    
-                    Text("Something went wrong")
-                    
-                    Button("Retry") {
-                        Task {
-                            await viewModel.reload()
-                        }
+                GeneralErrorView(reloadAction: {
+                    Task {
+                        await viewModel.reload()
                     }
-                }
+                })
             },
             emptyLoadedView: {
                 // Nothing found scene may appear here
-                VStack(spacing: 20) {
-                    Image(systemName: "binoculars")
-                        .font(.largeTitle)
-                    
-                    Text("Nothing found")
-                    
-                    Button("Reload") {
-                        Task {
-                            await viewModel.reload()
-                        }
+                NothingFoundView {
+                    Task {
+                        await viewModel.reload()
                     }
                 }
             },
             itemView: { book in
-                Text(book.name)
+                BookView(book: book)
             },
             loadMoreView: { loadMoreStatus in
                 switch loadMoreStatus {

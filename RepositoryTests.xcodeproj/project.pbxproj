@@ -36,6 +36,10 @@
 		3B00C5AA29A337DE00C92E29 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5A929A337DE00C92E29 /* ListView.swift */; };
 		3B00C5AD29A33B2200C92E29 /* ListView+ConvenienceInitializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5AC29A33B2200C92E29 /* ListView+ConvenienceInitializers.swift */; };
 		3B00C5AF29A3427400C92E29 /* ListViewPresentationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5AE29A3427400C92E29 /* ListViewPresentationStyle.swift */; };
+		3B00C5B229A3664D00C92E29 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5B129A3664D00C92E29 /* LoadingView.swift */; };
+		3B00C5B429A3668100C92E29 /* GeneralErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5B329A3668100C92E29 /* GeneralErrorView.swift */; };
+		3B00C5B629A366F900C92E29 /* NothingFoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5B529A366F900C92E29 /* NothingFoundView.swift */; };
+		3B00C5B829A3675400C92E29 /* BookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5B729A3675400C92E29 /* BookView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +92,10 @@
 		3B00C5A929A337DE00C92E29 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		3B00C5AC29A33B2200C92E29 /* ListView+ConvenienceInitializers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListView+ConvenienceInitializers.swift"; sourceTree = "<group>"; };
 		3B00C5AE29A3427400C92E29 /* ListViewPresentationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewPresentationStyle.swift; sourceTree = "<group>"; };
+		3B00C5B129A3664D00C92E29 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		3B00C5B329A3668100C92E29 /* GeneralErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralErrorView.swift; sourceTree = "<group>"; };
+		3B00C5B529A366F900C92E29 /* NothingFoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NothingFoundView.swift; sourceTree = "<group>"; };
+		3B00C5B729A3675400C92E29 /* BookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +152,7 @@
 				3B00C58D299F32D100C92E29 /* SingleEntityList */,
 				3B00C58E299F32FD00C92E29 /* MultipleEntitiesList */,
 				3B00C584299F324300C92E29 /* Models */,
+				3B00C5B029A3662100C92E29 /* SwiftUI */,
 				3B00C5A129A1DEA200C92E29 /* MockAPIs */,
 				3B00C56C299F321200C92E29 /* BaseRepository */,
 				3B00C546299F31C400C92E29 /* Assets.xcassets */,
@@ -313,6 +322,17 @@
 			path = ListView;
 			sourceTree = "<group>";
 		};
+		3B00C5B029A3662100C92E29 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				3B00C5B129A3664D00C92E29 /* LoadingView.swift */,
+				3B00C5B329A3668100C92E29 /* GeneralErrorView.swift */,
+				3B00C5B529A366F900C92E29 /* NothingFoundView.swift */,
+				3B00C5B729A3675400C92E29 /* BookView.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -449,9 +469,11 @@
 				3B00C57F299F321200C92E29 /* SectionedListViewModel.swift in Sources */,
 				3B00C545299F31C200C92E29 /* ContentView.swift in Sources */,
 				3B00C59E299F617900C92E29 /* SectionedBooksListViewModel.swift in Sources */,
+				3B00C5B229A3664D00C92E29 /* LoadingView.swift in Sources */,
 				3B00C598299F3A8500C92E29 /* PaginatedBooksRepository.swift in Sources */,
 				3B00C5AF29A3427400C92E29 /* ListViewPresentationStyle.swift in Sources */,
 				3B00C582299F321200C92E29 /* LoadingState.swift in Sources */,
+				3B00C5B829A3675400C92E29 /* BookView.swift in Sources */,
 				3B00C57D299F321200C92E29 /* PaginationStrategy.swift in Sources */,
 				3B00C5AA29A337DE00C92E29 /* ListView.swift in Sources */,
 				3B00C59A299F3C4C00C92E29 /* PaginatedBooksListView.swift in Sources */,
@@ -460,9 +482,11 @@
 				3B00C596299F39EF00C92E29 /* OnePagedBooksListView.swift in Sources */,
 				3B00C59C299F615E00C92E29 /* SectionedBooksListView.swift in Sources */,
 				3B00C57B299F321200C92E29 /* Repository.swift in Sources */,
+				3B00C5B629A366F900C92E29 /* NothingFoundView.swift in Sources */,
 				3B00C580299F321200C92E29 /* ListViewModel.swift in Sources */,
 				3B00C592299F353F00C92E29 /* SingleEntityListView.swift in Sources */,
 				3B00C586299F324F00C92E29 /* Book.swift in Sources */,
+				3B00C5B429A3668100C92E29 /* GeneralErrorView.swift in Sources */,
 				3B00C5AD29A33B2200C92E29 /* ListView+ConvenienceInitializers.swift in Sources */,
 				3B00C57E299F321200C92E29 /* ItemViewModel.swift in Sources */,
 				3B00C581299F321200C92E29 /* PaginatedListViewModel.swift in Sources */,

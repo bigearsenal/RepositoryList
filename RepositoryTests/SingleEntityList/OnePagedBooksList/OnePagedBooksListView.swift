@@ -20,46 +20,27 @@ struct OnePagedBooksListView: View {
             viewModel: viewModel,
             presentationStyle: selectedPresentationStyle,
             emptyLoadingView: {
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        ProgressView()
-                        Spacer()
-                    }
-                    Spacer()
-                }
+                // Skeleton may appear here
+                LoadingView()
             },
             emptyErrorView: { _ in
-                VStack(spacing: 20) {
-                    Image(systemName: "wrongwaysign")
-                        .font(.largeTitle)
-                    
-                    Text("Something went wrong")
-                    
-                    Button("Retry") {
-                        Task {
-                            await viewModel.reload()
-                        }
+                // Error like network error may appear here
+                GeneralErrorView(reloadAction: {
+                    Task {
+                        await viewModel.reload()
                     }
-                }
+                })
             },
             emptyLoadedView: {
-                VStack(spacing: 20) {
-                    Image(systemName: "binoculars")
-                        .font(.largeTitle)
-                    
-                    Text("Nothing found")
-                    
-                    Button("Reload") {
-                        Task {
-                            await viewModel.reload()
-                        }
+                // Nothing found scene may appear here
+                NothingFoundView {
+                    Task {
+                        await viewModel.reload()
                     }
                 }
             },
             itemView: { book in
-                Text(book.name)
+                BookView(book: book)
             }
         )
             .overlay(
