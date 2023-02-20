@@ -14,13 +14,16 @@ enum BooksAPIError: Swift.Error {
 
 final class MockOnePagedBooksAPI {
     func getAllBooks() async throws -> [Book] {
+        print("BooksAPI: fetching all books")
         try await Task.sleep(nanoseconds: 500_000_000)
         // fake error in 1/3 case
         guard Int.random(in: 0..<3) > 0 else { throw BooksAPIError.fakeError }
         // fake empty state in 1/3 case
         guard Int.random(in: 0..<3) > 0 else { return [] }
         // no error, no empty
-        return Array(0..<10).map { Book(name: "Book#\($0)") }
+        let result = Array(0..<10).map { Book(name: "Book#\($0)") }
+        print("BooksAPI: fetched \(result.count) results")
+        return result
     }
 }
 
@@ -33,6 +36,8 @@ final class MockPaginatedBooksAPI {
     @MainActor var currentPage = 1
     
     func getBooks(offset: Int, limit: Int) async throws -> [Book] {
+        print("BooksAPI: fetching..., limit: \(limit), offset: \(offset)")
+        
         // fake api delay
         try await Task.sleep(nanoseconds: 500_000_000)
         
@@ -45,6 +50,8 @@ final class MockPaginatedBooksAPI {
         await MainActor.run {
             currentPage = page
         }
-        return Array(offset..<offset+numberOfRecords).map { Book(name: "Book#\($0)") }
+        let result = Array(offset..<offset+numberOfRecords).map { Book(name: "Book#\($0)") }
+        print("BooksAPI: fetched \(result.count) results, limit: \(limit), offset: \(offset)")
+        return result
     }
 }
