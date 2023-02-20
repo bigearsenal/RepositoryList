@@ -46,9 +46,6 @@ struct OnePagedBooksListView: View {
             },
             itemView: { book in
                 Text(book.name)
-            },
-            footerView: {
-                EmptyView()
             }
         )
     }

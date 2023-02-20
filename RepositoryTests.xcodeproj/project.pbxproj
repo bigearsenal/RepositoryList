@@ -35,6 +35,7 @@
 		3B00C5A329A1DEC700C92E29 /* BooksAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5A229A1DEC700C92E29 /* BooksAPI.swift */; };
 		3B00C5A829A32FDB00C92E29 /* PaginatedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5A729A32FDB00C92E29 /* PaginatedListView.swift */; };
 		3B00C5AA29A337DE00C92E29 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5A929A337DE00C92E29 /* ListView.swift */; };
+		3B00C5AD29A33B2200C92E29 /* ListView+ConvenienceInitializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5AC29A33B2200C92E29 /* ListView+ConvenienceInitializers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		3B00C5A229A1DEC700C92E29 /* BooksAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksAPI.swift; sourceTree = "<group>"; };
 		3B00C5A729A32FDB00C92E29 /* PaginatedListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedListView.swift; sourceTree = "<group>"; };
 		3B00C5A929A337DE00C92E29 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		3B00C5AC29A33B2200C92E29 /* ListView+ConvenienceInitializers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListView+ConvenienceInitializers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,10 +298,19 @@
 		3B00C5A629A32FC900C92E29 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3B00C5A929A337DE00C92E29 /* ListView.swift */,
+				3B00C5AB29A33B0F00C92E29 /* ListView */,
 				3B00C5A729A32FDB00C92E29 /* PaginatedListView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		3B00C5AB29A33B0F00C92E29 /* ListView */ = {
+			isa = PBXGroup;
+			children = (
+				3B00C5A929A337DE00C92E29 /* ListView.swift */,
+				3B00C5AC29A33B2200C92E29 /* ListView+ConvenienceInitializers.swift */,
+			);
+			path = ListView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -452,6 +463,7 @@
 				3B00C5A829A32FDB00C92E29 /* PaginatedListView.swift in Sources */,
 				3B00C592299F353F00C92E29 /* SingleEntityListView.swift in Sources */,
 				3B00C586299F324F00C92E29 /* Book.swift in Sources */,
+				3B00C5AD29A33B2200C92E29 /* ListView+ConvenienceInitializers.swift in Sources */,
 				3B00C57E299F321200C92E29 /* ItemViewModel.swift in Sources */,
 				3B00C581299F321200C92E29 /* PaginatedListViewModel.swift in Sources */,
 				3B00C5A329A1DEC700C92E29 /* BooksAPI.swift in Sources */,

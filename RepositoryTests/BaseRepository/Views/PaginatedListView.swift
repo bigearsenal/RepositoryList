@@ -83,19 +83,11 @@ struct PaginatedListView<
                     // Error at the end of the list
                     if let error = viewModel.error {
                         nonEmptyErrorView(error)
-                            .onTapGesture {
-                                Task {
-                                    await viewModel.fetchNext()
-                                }
-                            }
                     }
                     
                     // Loading at the end of the list
                     else {
                         nonEmptyLoadingView()
-                            .task {
-                                await viewModel.fetchNext()
-                            }
                     }
                 }
                 
