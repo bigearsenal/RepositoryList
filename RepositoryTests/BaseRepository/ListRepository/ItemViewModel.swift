@@ -20,7 +20,7 @@ class ItemViewModel<Repository: AnyRepository>: ObservableObject {
     let repository: Repository
     
     /// Current running task
-    var loadingTask: Task<Void, Error>?
+    var loadingTask: Task<ItemType?, Error>?
     
     /// The current data
     @Published var data: ItemType?
@@ -57,21 +57,22 @@ class ItemViewModel<Repository: AnyRepository>: ObservableObject {
     }
     
     /// Erase and reload all data
-    func reload() async throws {
+    func reload() async {
         flush()
-        try await request()
+        await request()
     }
     
     /// Refresh data without erasing current data
-    func refresh() async throws {
-        try await request()
+    func refresh() async {
+        await request()
     }
     
     /// Request data from outside to get new data
-    func request() async throws {
+    @discardableResult
+    func request() async -> Result<ItemType?, Error> {
         // prevent unwanted request
         guard repository.shouldFetch() else {
-            return
+            return .failure(CancellationError())
         }
         
         // cancel previous request
@@ -83,17 +84,21 @@ class ItemViewModel<Repository: AnyRepository>: ObservableObject {
         
         // assign and execute loadingTask
         loadingTask = Task { [unowned self] in
-            do {
-                let newData = try await repository.fetch()
-                handleNewData(newData)
-            } catch {
-                if error is CancellationError {
-                    return
-                }
+            try await repository.fetch()
+        }
+        
+        // await value
+        do {
+            let newData = try await loadingTask!.value
+            handleNewData(newData)
+            return .success(newData)
+        } catch {
+            // ignore cancellation error
+            if !(error is CancellationError) {
                 handleError(error)
             }
+            return .failure(error)
         }
-        try await loadingTask?.value
     }
     
     /// Handle new data that just received
