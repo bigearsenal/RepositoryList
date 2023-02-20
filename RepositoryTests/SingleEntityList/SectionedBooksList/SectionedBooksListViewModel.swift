@@ -31,7 +31,7 @@ extension PaginatedListViewModel<PaginatedBooksListRepository>: SectionsConverti
                         BooksListSection(
                             id: "\(index + 1)",
                             items: items,
-                            loadingState: self?.state ?? .loaded,
+                            loadingState: .loaded,
                             error: self?.error?.localizedDescription
                         )
                     }

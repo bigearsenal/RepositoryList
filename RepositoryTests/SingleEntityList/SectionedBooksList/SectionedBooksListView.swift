@@ -15,45 +15,45 @@ struct SectionedBooksListView: View {
     
     var body: some View {
         List {
-            ForEach(sections, id: \.id) {section in
-                Section(header: Text(section.name)) {
-                    switch section.loadingState {
-                    case .initialized, .loading where section.items.isEmpty:
-                        HStack {
-                            Spacer()
-                            ProgressView()
-                            Spacer()
-                        }
-                    case .error where section.items.isEmpty:
-                        Text("Error")
-                    default:
-                        ForEach(section.items) { book in
-                            Text(book.name)
-                        }
-                    }
-                }
-            }
-            
-            if viewModel.repository.shouldFetch() {
-                if viewModel.data.isEmpty == false {
-                    HStack {
-                        if viewModel.error != nil {
-                            Button("Error fetching more item... Tap to try again") {
-                                Task {
-                                    await viewModel.fetchNext()
-                                }
-                            }
-                        } else {
-                            Text("Fetching more...")
-                                .task {
-                                    await viewModel.fetchNext()
-                                }
-                        }
-                    }
-                }
-            } else {
-                Text("End of list")
-            }
+//            ForEach(sections, id: \.id) {section in
+//                Section(header: Text(section.name)) {
+//                    switch section.loadingState {
+//                    case .initialized, .loading where section.items.isEmpty:
+//                        HStack {
+//                            Spacer()
+//                            ProgressView()
+//                            Spacer()
+//                        }
+//                    case .error where section.items.isEmpty:
+//                        Text("Error")
+//                    default:
+//                        ForEach(section.items) { book in
+//                            Text(book.name)
+//                        }
+//                    }
+//                }
+//            }
+//            
+//            if viewModel.repository.shouldFetch() {
+//                if viewModel.data.isEmpty == false {
+//                    HStack {
+//                        if viewModel.error != nil {
+//                            Button("Error fetching more item... Tap to try again") {
+//                                Task {
+//                                    await viewModel.fetchNext()
+//                                }
+//                            }
+//                        } else {
+//                            Text("Fetching more...")
+//                                .task {
+//                                    await viewModel.fetchNext()
+//                                }
+//                        }
+//                    }
+//                }
+//            } else {
+//                Text("End of list")
+//            }
         }
         .overlay(
             HStack {

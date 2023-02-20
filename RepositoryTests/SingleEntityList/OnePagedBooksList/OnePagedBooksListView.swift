@@ -13,28 +13,101 @@ struct OnePagedBooksListView: View {
     )
     
     var body: some View {
-        List {
-            switch viewModel.state {
-            case .initialized, .loading where viewModel.data.isEmpty:
-                HStack {
-                    Spacer()
-                    ProgressView()
-                    Spacer()
+        // Empty state
+        if viewModel.data.isEmpty {
+            VStack {
+                Spacer()
+                
+                // initial loading
+                if viewModel.isLoading {
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Spacer()
+                            ProgressView()
+                            Spacer()
+                        }
+                        Spacer()
+                    }
                 }
-            case .error:
-                Text("Error")
-            default:
+                
+                // initial error
+                else if viewModel.error != nil {
+                    VStack {
+                        Spacer()
+                        Button("Something is broken. Tap to try again") {
+                            Task {
+                                await viewModel.reload()
+                            }
+                        }
+                        Spacer()
+                    }
+                }
+                
+                // empty view
+                else {
+                    Button("Empty") {
+                        Task {
+                            await viewModel.reload()
+                        }
+                    }
+                }
+                
+                Spacer()
+            }
+                .task {
+                    await viewModel.reload()
+                }
+        }
+        
+        // Non-empty state
+        else {
+            List {
+                // List of items
                 ForEach(viewModel.data) { book in
                     Text(book.name)
                 }
+                
+//                // should fetch new item
+//                if viewModel.repository.shouldFetch() {
+//                    // Loading at the end of the list
+//                    if viewModel.error == nil {
+//                        Text("Fetching more...")
+//                            .task {
+//                                await viewModel.fetchNext()
+//                            }
+//                    }
+//
+//                    // Error at the end of the list
+//                    else {
+//                        Button("Error fetching more item... Tap to try again") {
+//                            Task {
+//                                await viewModel.fetchNext()
+//                            }
+//                        }
+//                    }
+//                }
+//
+//                else {
+//                    Text("End of list")
+//                }
             }
-            
-        }
-        .task {
-            await viewModel.reload()
-        }
-        .refreshable {
-            await viewModel.refresh()
+//            .overlay(
+//                HStack {
+//                    Spacer()
+//                    VStack {
+//                        Spacer()
+//                        if viewModel.error != nil {
+//                            Text("Error!")
+//                                .foregroundColor(.red)
+//                        }
+//                        Text("Page: \(viewModel.repository.currentPage)")
+//                    }
+//                }.padding()
+//            )
+            .refreshable {
+                await viewModel.refresh()
+            }
         }
     }
 }

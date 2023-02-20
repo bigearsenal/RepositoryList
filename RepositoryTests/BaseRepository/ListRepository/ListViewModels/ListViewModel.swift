@@ -22,7 +22,7 @@ class ListViewModel<Repository: AnyListRepository>: ObservableObject {
     @Published var data: [ItemType] = []
 
     /// The current loading state of the data
-    @Published var state: LoadingState = .initialized
+    @Published var isLoading = false
 
     /// Optional error if occurred
     @Published var error: Error?
@@ -50,7 +50,7 @@ class ListViewModel<Repository: AnyListRepository>: ObservableObject {
     /// Erase data and reset repository to its initial state
     func flush() {
         data = []
-        state = .initialized
+        isLoading = false
         error = nil
     }
     
@@ -78,7 +78,7 @@ class ListViewModel<Repository: AnyListRepository>: ObservableObject {
         loadingTask?.cancel()
         
         // mark as loading
-        state = .loading
+        isLoading = true
         error = nil
         
         // assign and execute loadingTask
@@ -105,14 +105,14 @@ class ListViewModel<Repository: AnyListRepository>: ObservableObject {
     func handleNewData(_ newData: [ItemType]) {
         data = newData
         error = nil
-        state = .loaded
+        isLoading = false
     }
     
     /// Handle error when received
     /// - Parameter err: the error received
     func handleError(_ err: Error) {
         error = err
-        state = .error
+        isLoading = false
     }
     
 //    /// Override data
