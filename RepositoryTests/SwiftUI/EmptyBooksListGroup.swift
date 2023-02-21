@@ -12,29 +12,32 @@ struct EmptyBooksListGroup: View {
     let reloadAction: () async -> Void
     
     var body: some View {
-        HStack {
-            Spacer()
-            switch status {
-            case .loading:
-                VStack {
-                    BooksLoadingView()
-                }
-            case .loaded:
+        switch status {
+        case .loading:
+            BooksLoadingView()
+        case .loaded:
+            HStack {
+                Spacer()
                 NothingFoundView {
                     Task {
                         await reloadAction()
                     }
                 }
-            case .error:
+                Spacer()
+            }
+            .frame(minHeight: 200)
+        case .error:
+            HStack {
+                Spacer()
                 GeneralErrorView {
                     Task {
                         await reloadAction()
                     }
                 }
+                Spacer()
             }
-            Spacer()
-        }
             .frame(minHeight: 200)
+        }
     }
 }
 
