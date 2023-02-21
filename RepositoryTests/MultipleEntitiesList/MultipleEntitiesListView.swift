@@ -25,16 +25,16 @@ struct MultipleEntitiesListView: View {
             songs
         }
         .task {
-            _ = await(
-                booksViewModel.reload(),
-                songsViewModel.reload()
-            )
+            await booksViewModel.reload()
+        }
+        .task {
+            await songsViewModel.reload()
         }
         .refreshable {
-            _ = await(
-                booksViewModel.refresh(),
-                songsViewModel.refresh()
-            )
+            await booksViewModel.refresh()
+        }
+        .refreshable {
+            await songsViewModel.reload()
         }
     }
     
