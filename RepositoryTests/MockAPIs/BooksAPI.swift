@@ -21,7 +21,7 @@ final class MockOnePagedBooksAPI {
         // fake empty state in 1/3 case
         guard Int.random(in: 0..<3) > 0 else { return [] }
         // no error, no empty
-        let result = Array(0..<10).map { Book(name: "Book#\($0)") }
+        let result = Array(0..<10).map { Book(id: $0, name: "Book#\($0)") }
         print("BooksAPI: fetched \(result.count) results")
         return result
     }
@@ -50,7 +50,7 @@ final class MockPaginatedBooksAPI {
         await MainActor.run {
             currentPage = page
         }
-        let result = Array(offset..<offset+numberOfRecords).map { Book(name: "Book#\($0)") }
+        let result = Array(offset..<offset+numberOfRecords).map { Book(id: $0, name: "Book#\($0)") }
         print("BooksAPI: fetched \(result.count) results, limit: \(limit), offset: \(offset)")
         return result
     }

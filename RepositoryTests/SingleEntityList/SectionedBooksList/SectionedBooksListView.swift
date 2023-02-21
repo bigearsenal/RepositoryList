@@ -41,7 +41,7 @@ struct SectionedBooksListView: View {
                 ForEach(viewModel.sections, id: \.id) {section in
                     Section(header: Text(section.name)) {
                         ForEach(section.items) { book in
-                            Text(book.name)
+                            BookView(book: book)
                         }
                     }
                 }

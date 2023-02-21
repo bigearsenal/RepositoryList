@@ -1,6 +1,7 @@
 import Foundation
 
 struct Book: Hashable & Identifiable {
-    var id: String { name }
+    var id: Int
     let name: String
+    var refreshedCount: Int = 0
 }

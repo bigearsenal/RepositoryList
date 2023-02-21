@@ -11,12 +11,12 @@ struct BookView: View {
     let book: Book
     
     var body: some View {
-        Text(book.name)
+        Text(book.name + (book.refreshedCount > 0 ? " (refreshed \(book.refreshedCount) times)": ""))
     }
 }
 
 struct BookView_Previews: PreviewProvider {
     static var previews: some View {
-        BookView(book: .init(name: "Test"))
+        BookView(book: .init(id: 1, name: "Test"))
     }
 }

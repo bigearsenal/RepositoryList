@@ -75,7 +75,7 @@ struct MultipleEntitiesListView: View {
         ForEach(booksViewModel.sections, id: \.id) {section in
             Section(header: Text("Books " + section.name)) {
                 ForEach(section.items) { book in
-                    Text(book.name)
+                    BookView(book: book)
                 }
                 switch loadMoreStatus {
                 case .loading:
