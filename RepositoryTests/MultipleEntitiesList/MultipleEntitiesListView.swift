@@ -81,6 +81,7 @@ struct MultipleEntitiesListView: View {
                     }
                 }
             }
+                .animation(.default, value: booksViewModel.data)
             Section {
                 switch loadMoreStatus {
                 case .loading:
