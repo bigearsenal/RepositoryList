@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct MultipleEntitiesListView: View {
-    @StateObject var booksViewModel = SectionedBooksListViewModel(repository: PaginatedBooksListRepository(limit: 5))
-    @StateObject var songsViewModel = SectionedSongsListViewModel(repository: PaginatedSongsListRepository(limit: 5))
+    @StateObject var booksViewModel = SectionedBooksListViewModel(
+        repository: PaginatedBooksListRepository(limit: 5)
+    )
+    @StateObject var songsViewModel = SectionedSongsListViewModel(
+        repository: PaginatedSongsListRepository(limit: 5)
+    )
     
     var body: some View {
         List {
