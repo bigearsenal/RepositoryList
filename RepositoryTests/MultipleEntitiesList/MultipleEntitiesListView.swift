@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MultipleEntitiesListView: View {
     @StateObject var booksViewModel = SectionedBooksListViewModel(repository: PaginatedBooksListRepository(limit: 5))
-    @StateObject var songsViewModel = SectionedSongsListViewModel(repository: PaginatedSongsListRepository())
+    @StateObject var songsViewModel = SectionedSongsListViewModel(repository: PaginatedSongsListRepository(limit: 5))
     
     var body: some View {
         List {
@@ -20,7 +20,7 @@ struct MultipleEntitiesListView: View {
             songs
         }
         .refreshable {
-            await(
+            _ = await(
                 booksViewModel.reload(),
                 songsViewModel.reload()
             )

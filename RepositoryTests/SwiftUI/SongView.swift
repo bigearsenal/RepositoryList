@@ -12,6 +12,7 @@ struct SongView: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
             .foregroundColor(.white)
+            .frame(width: 120, height: 120)
             .overlay(
                 Text(song.id)
             )
