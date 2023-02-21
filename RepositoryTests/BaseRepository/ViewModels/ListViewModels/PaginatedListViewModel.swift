@@ -35,6 +35,9 @@ class PaginatedListViewModel<Repository: AnyPaginatedListRepository>: ListViewMo
             isLoading = false
             error = nil
         case .failure(let failure):
+            guard !(failure is CancellationError) else {
+                return
+            }
             data = []
             isLoading = false
             error = failure

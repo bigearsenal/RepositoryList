@@ -23,10 +23,16 @@ struct MultipleEntitiesListView: View {
             // Songs
             songs
         }
-        .refreshable {
+        .task {
             _ = await(
                 booksViewModel.reload(),
                 songsViewModel.reload()
+            )
+        }
+        .refreshable {
+            _ = await(
+                booksViewModel.refresh(),
+                songsViewModel.refresh()
             )
         }
     }
@@ -63,9 +69,6 @@ struct MultipleEntitiesListView: View {
                 await booksViewModel.reload()
             }
         }
-            .task {
-                await booksViewModel.reload()
-            }
     }
     
     func nonEmptyBooks(loadMoreStatus: ListLoadingState.LoadMoreStatus) -> some View {
@@ -97,9 +100,6 @@ struct MultipleEntitiesListView: View {
     
     func emptySongs(status: ListLoadingState.Status) -> some View {
         EmptyListGroup(status: status) {
-            await songsViewModel.reload()
-        }
-        .task {
             await songsViewModel.reload()
         }
         .frame(height: 200)
