@@ -72,11 +72,15 @@ struct MultipleEntitiesListView: View {
     }
     
     func nonEmptyBooks(loadMoreStatus: ListLoadingState.LoadMoreStatus) -> some View {
-        ForEach(booksViewModel.sections, id: \.id) {section in
-            Section(header: Text("Books " + section.name)) {
-                ForEach(section.items) { book in
-                    BookView(book: book)
+        Group {
+            ForEach(booksViewModel.sections, id: \.id) {section in
+                Section(header: Text("Books " + section.name)) {
+                    ForEach(section.items) { book in
+                        BookView(book: book)
+                    }
                 }
+            }
+            Section {
                 switch loadMoreStatus {
                 case .loading:
                     Button("Fetch more") {

@@ -26,7 +26,7 @@ final class SectionedBooksListViewModel: PaginatedListViewModel<PaginatedBooksLi
 extension SectionedBooksListViewModel: SectionsConvertibleListViewModel {
     var sections: [BooksListSection] {
         let chunkedData = data
-            .chunked(into: 20)
+            .chunked(into: 5)
             .enumerated()
         
         return chunkedData
