@@ -25,4 +25,13 @@ enum ListLoadingState {
     }
     case empty(Status)
     case nonEmpty(loadMoreStatus: LoadMoreStatus)
+    
+    var isEmpty: Bool {
+        switch self {
+        case .empty:
+            return true
+        default:
+            return false
+        }
+    }
 }

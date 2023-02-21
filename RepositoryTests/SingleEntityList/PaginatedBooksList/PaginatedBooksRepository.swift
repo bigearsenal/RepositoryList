@@ -16,8 +16,8 @@ final class PaginatedBooksListRepository: AnyPaginatedListRepository {
     
     // MARK: - Initializer
 
-    init() {
-        paginationStrategy = LimitOffsetPaginationStrategy(limit: 20)
+    init(limit: Int = 20) {
+        paginationStrategy = LimitOffsetPaginationStrategy(limit: limit)
     }
     
     // MARK: - AnyPaginatedListRepository

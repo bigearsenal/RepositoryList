@@ -20,22 +20,12 @@ extension SectionedBooksListViewModel: SectionsConvertibleListViewModel {
         
         return chunkedData
             .map { [weak self] index, items in
-                BooksListSection(
+                .init(
                     id: "\(index + 1)",
                     items: items,
                     loadingState: .loaded,
                     error: self?.error?.localizedDescription
                 )
             }
-    }
-}
-
-// Create ViewModel
-
-private extension Array {
-    func chunked(into size: Int) -> [[Element]] {
-        return stride(from: 0, to: count, by: size).map {
-            Array(self[$0 ..< Swift.min($0 + size, count)])
-        }
     }
 }

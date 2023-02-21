@@ -42,6 +42,15 @@
 		3B00C5B829A3675400C92E29 /* BookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5B729A3675400C92E29 /* BookView.swift */; };
 		3B00C5BA29A378F000C92E29 /* LoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5B929A378F000C92E29 /* LoadMoreView.swift */; };
 		3B00C5BC29A3847600C92E29 /* BooksListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5BB29A3847600C92E29 /* BooksListSection.swift */; };
+		3B00C5BE29A47C5B00C92E29 /* MultipleEntitiesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5BD29A47C5B00C92E29 /* MultipleEntitiesListViewModel.swift */; };
+		3B00C5C029A47D9E00C92E29 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5BF29A47D9E00C92E29 /* Song.swift */; };
+		3B00C5C229A47DF600C92E29 /* PaginatedSongListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5C129A47DF600C92E29 /* PaginatedSongListRepository.swift */; };
+		3B00C5C429A47E8E00C92E29 /* SongsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5C329A47E8E00C92E29 /* SongsAPI.swift */; };
+		3B00C5C729A47F2800C92E29 /* SectionedSongsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5C629A47F2800C92E29 /* SectionedSongsListViewModel.swift */; };
+		3B00C5CA29A4803A00C92E29 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5C929A4803A00C92E29 /* Array+Extensions.swift */; };
+		3B00C5CC29A4809100C92E29 /* SongsListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5CB29A4809100C92E29 /* SongsListSection.swift */; };
+		3B00C5CE29A4840100C92E29 /* EmptyListGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5CD29A4840100C92E29 /* EmptyListGroup.swift */; };
+		3B00C5D029A4864F00C92E29 /* SongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5CF29A4864F00C92E29 /* SongView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +109,15 @@
 		3B00C5B729A3675400C92E29 /* BookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookView.swift; sourceTree = "<group>"; };
 		3B00C5B929A378F000C92E29 /* LoadMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreView.swift; sourceTree = "<group>"; };
 		3B00C5BB29A3847600C92E29 /* BooksListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksListSection.swift; sourceTree = "<group>"; };
+		3B00C5BD29A47C5B00C92E29 /* MultipleEntitiesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleEntitiesListViewModel.swift; sourceTree = "<group>"; };
+		3B00C5BF29A47D9E00C92E29 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		3B00C5C129A47DF600C92E29 /* PaginatedSongListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedSongListRepository.swift; sourceTree = "<group>"; };
+		3B00C5C329A47E8E00C92E29 /* SongsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsAPI.swift; sourceTree = "<group>"; };
+		3B00C5C629A47F2800C92E29 /* SectionedSongsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionedSongsListViewModel.swift; sourceTree = "<group>"; };
+		3B00C5C929A4803A00C92E29 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		3B00C5CB29A4809100C92E29 /* SongsListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsListSection.swift; sourceTree = "<group>"; };
+		3B00C5CD29A4840100C92E29 /* EmptyListGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListGroup.swift; sourceTree = "<group>"; };
+		3B00C5CF29A4864F00C92E29 /* SongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +176,7 @@
 				3B00C584299F324300C92E29 /* Models */,
 				3B00C5B029A3662100C92E29 /* SwiftUI */,
 				3B00C5A129A1DEA200C92E29 /* MockAPIs */,
+				3B00C5C829A4802D00C92E29 /* Extensions */,
 				3B00C56C299F321200C92E29 /* BaseRepository */,
 				3B00C546299F31C400C92E29 /* Assets.xcassets */,
 				3B00C548299F31C400C92E29 /* Preview Content */,
@@ -251,6 +270,8 @@
 			children = (
 				3B00C585299F324F00C92E29 /* Book.swift */,
 				3B00C5BB29A3847600C92E29 /* BooksListSection.swift */,
+				3B00C5CB29A4809100C92E29 /* SongsListSection.swift */,
+				3B00C5BF29A47D9E00C92E29 /* Song.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -297,6 +318,8 @@
 			isa = PBXGroup;
 			children = (
 				3B00C593299F35E200C92E29 /* MultipleEntitiesListView.swift */,
+				3B00C5BD29A47C5B00C92E29 /* MultipleEntitiesListViewModel.swift */,
+				3B00C5C529A47F1300C92E29 /* SongsListViewModel */,
 			);
 			path = MultipleEntitiesList;
 			sourceTree = "<group>";
@@ -305,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				3B00C5A229A1DEC700C92E29 /* BooksAPI.swift */,
+				3B00C5C329A47E8E00C92E29 /* SongsAPI.swift */,
 			);
 			path = MockAPIs;
 			sourceTree = "<group>";
@@ -334,9 +358,28 @@
 				3B00C5B329A3668100C92E29 /* GeneralErrorView.swift */,
 				3B00C5B529A366F900C92E29 /* NothingFoundView.swift */,
 				3B00C5B729A3675400C92E29 /* BookView.swift */,
+				3B00C5CF29A4864F00C92E29 /* SongView.swift */,
 				3B00C5B929A378F000C92E29 /* LoadMoreView.swift */,
+				3B00C5CD29A4840100C92E29 /* EmptyListGroup.swift */,
 			);
 			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		3B00C5C529A47F1300C92E29 /* SongsListViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3B00C5C129A47DF600C92E29 /* PaginatedSongListRepository.swift */,
+				3B00C5C629A47F2800C92E29 /* SectionedSongsListViewModel.swift */,
+			);
+			path = SongsListViewModel;
+			sourceTree = "<group>";
+		};
+		3B00C5C829A4802D00C92E29 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3B00C5C929A4803A00C92E29 /* Array+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -481,22 +524,31 @@
 				3B00C582299F321200C92E29 /* LoadingState.swift in Sources */,
 				3B00C5B829A3675400C92E29 /* BookView.swift in Sources */,
 				3B00C57D299F321200C92E29 /* PaginationStrategy.swift in Sources */,
+				3B00C5C729A47F2800C92E29 /* SectionedSongsListViewModel.swift in Sources */,
+				3B00C5CC29A4809100C92E29 /* SongsListSection.swift in Sources */,
 				3B00C5AA29A337DE00C92E29 /* ListView.swift in Sources */,
 				3B00C59A299F3C4C00C92E29 /* PaginatedBooksListView.swift in Sources */,
 				3B00C57C299F321200C92E29 /* LimitOffsetPaginationStrategy.swift in Sources */,
 				3B00C543299F31C200C92E29 /* RepositoryTestsApp.swift in Sources */,
 				3B00C5BC29A3847600C92E29 /* BooksListSection.swift in Sources */,
 				3B00C596299F39EF00C92E29 /* OnePagedBooksListView.swift in Sources */,
+				3B00C5C029A47D9E00C92E29 /* Song.swift in Sources */,
 				3B00C59C299F615E00C92E29 /* SectionedBooksListView.swift in Sources */,
 				3B00C57B299F321200C92E29 /* Repository.swift in Sources */,
+				3B00C5C229A47DF600C92E29 /* PaginatedSongListRepository.swift in Sources */,
 				3B00C5B629A366F900C92E29 /* NothingFoundView.swift in Sources */,
 				3B00C580299F321200C92E29 /* ListViewModel.swift in Sources */,
 				3B00C592299F353F00C92E29 /* SingleEntityListView.swift in Sources */,
+				3B00C5C429A47E8E00C92E29 /* SongsAPI.swift in Sources */,
 				3B00C586299F324F00C92E29 /* Book.swift in Sources */,
 				3B00C5B429A3668100C92E29 /* GeneralErrorView.swift in Sources */,
+				3B00C5D029A4864F00C92E29 /* SongView.swift in Sources */,
 				3B00C5AD29A33B2200C92E29 /* ListView+ConvenienceInitializers.swift in Sources */,
 				3B00C57E299F321200C92E29 /* ItemViewModel.swift in Sources */,
 				3B00C581299F321200C92E29 /* PaginatedListViewModel.swift in Sources */,
+				3B00C5CA29A4803A00C92E29 /* Array+Extensions.swift in Sources */,
+				3B00C5CE29A4840100C92E29 /* EmptyListGroup.swift in Sources */,
+				3B00C5BE29A47C5B00C92E29 /* MultipleEntitiesListViewModel.swift in Sources */,
 				3B00C5A329A1DEC700C92E29 /* BooksAPI.swift in Sources */,
 				3B00C5BA29A378F000C92E29 /* LoadMoreView.swift in Sources */,
 			);
