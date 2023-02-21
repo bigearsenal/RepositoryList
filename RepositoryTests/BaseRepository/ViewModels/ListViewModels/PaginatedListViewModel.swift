@@ -3,6 +3,11 @@ import Foundation
 /// Reusable ViewModel to manage a paginated List of some Kind of item
 @MainActor
 class PaginatedListViewModel<Repository: AnyPaginatedListRepository>: ListViewModel<Repository> {
+    // MARK: - Properties
+    
+    /// Result count of first request, can be use to keeps first record on refreshing
+    private var firstPageCount: Int?
+    
     // MARK: - Actions
 
     /// Erase data and reset repository to its initial state
@@ -13,8 +18,27 @@ class PaginatedListViewModel<Repository: AnyPaginatedListRepository>: ListViewMo
 
     /// Refresh data
     override func refresh() async {
+        // keep first page as placeholder
+        data = Array(data.prefix(firstPageCount ?? 0))
+        isLoading = false
+        error = nil
+        
+        // reset pagination
         repository.paginationStrategy.resetPagination()
-        await reload()
+        
+        // request to update first page
+        let firstPageResult = await request()
+        switch firstPageResult {
+        case .success(let firstPage):
+            // replace first page
+            data = firstPage
+            isLoading = false
+            error = nil
+        case .failure(let failure):
+            data = []
+            isLoading = false
+            error = failure
+        }
     }
     
     /// Request data from outside to get new data
@@ -26,6 +50,11 @@ class PaginatedListViewModel<Repository: AnyPaginatedListRepository>: ListViewMo
         // catch result
         switch result {
         case .success(let newData):
+            // assign first page count
+            if firstPageCount == nil {
+                firstPageCount = newData.count
+            }
+            
             // check if last page loaded
             repository.paginationStrategy.checkIfLastPageLoaded(lastSnapshot: newData)
             
