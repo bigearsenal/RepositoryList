@@ -14,7 +14,7 @@ struct LoadMoreView: View {
     var body: some View {
         switch loadMoreStatus {
         case .loading:
-            Text("Fetching more...")
+            BooksLoadingView(numberOfCells: 1)
                 .task {
                     await fetchNextHandler()
                 }

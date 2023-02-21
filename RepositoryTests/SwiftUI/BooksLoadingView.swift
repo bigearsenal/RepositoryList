@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct BooksLoadingView: View {
+    let numberOfCells: Int
+    
+    init(numberOfCells: Int = 5) {
+        self.numberOfCells = numberOfCells
+    }
+    
     var body: some View {
-        ForEach(0..<5) { id in
+        ForEach(0..<numberOfCells, id: \.self) { id in
             BookView(book: .init(id: id, name: "Test"), isLoading: true)
         }
     }
