@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SkeletonUI
 
 struct MultipleEntitiesListView: View {
     @StateObject var booksViewModel = SectionedBooksListViewModel(
@@ -65,7 +66,7 @@ struct MultipleEntitiesListView: View {
 
     func emptyBooks(status: ListLoadingState.Status) -> some View {
         Section(header: Text("Books")) {
-            EmptyListGroup(status: status) {
+            EmptyBooksListGroup(status: status) {
                 await booksViewModel.reload()
             }
         }
@@ -103,10 +104,9 @@ struct MultipleEntitiesListView: View {
     }
     
     func emptySongs(status: ListLoadingState.Status) -> some View {
-        EmptyListGroup(status: status) {
+        EmptySongsListGroup(status: status) {
             await songsViewModel.reload()
         }
-        .frame(height: 200)
     }
     
     func nonEmptySongs(loadMoreStatus: ListLoadingState.LoadMoreStatus) -> some View {
@@ -120,7 +120,7 @@ struct MultipleEntitiesListView: View {
                 
                 switch loadMoreStatus {
                 case .loading:
-                    LoadingView()
+                    SongsLoadingView()
                         .frame(width: 120, height: 120)
                         .task {
                             await songsViewModel.fetchNext()

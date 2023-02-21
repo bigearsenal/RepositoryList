@@ -36,7 +36,7 @@
 		3B00C5AA29A337DE00C92E29 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5A929A337DE00C92E29 /* ListView.swift */; };
 		3B00C5AD29A33B2200C92E29 /* ListView+ConvenienceInitializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5AC29A33B2200C92E29 /* ListView+ConvenienceInitializers.swift */; };
 		3B00C5AF29A3427400C92E29 /* ListViewPresentationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5AE29A3427400C92E29 /* ListViewPresentationStyle.swift */; };
-		3B00C5B229A3664D00C92E29 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5B129A3664D00C92E29 /* LoadingView.swift */; };
+		3B00C5B229A3664D00C92E29 /* BooksLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5B129A3664D00C92E29 /* BooksLoadingView.swift */; };
 		3B00C5B429A3668100C92E29 /* GeneralErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5B329A3668100C92E29 /* GeneralErrorView.swift */; };
 		3B00C5B629A366F900C92E29 /* NothingFoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5B529A366F900C92E29 /* NothingFoundView.swift */; };
 		3B00C5B829A3675400C92E29 /* BookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5B729A3675400C92E29 /* BookView.swift */; };
@@ -49,8 +49,11 @@
 		3B00C5C729A47F2800C92E29 /* SectionedSongsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5C629A47F2800C92E29 /* SectionedSongsListViewModel.swift */; };
 		3B00C5CA29A4803A00C92E29 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5C929A4803A00C92E29 /* Array+Extensions.swift */; };
 		3B00C5CC29A4809100C92E29 /* SongsListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5CB29A4809100C92E29 /* SongsListSection.swift */; };
-		3B00C5CE29A4840100C92E29 /* EmptyListGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5CD29A4840100C92E29 /* EmptyListGroup.swift */; };
+		3B00C5CE29A4840100C92E29 /* EmptyBooksListGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5CD29A4840100C92E29 /* EmptyBooksListGroup.swift */; };
 		3B00C5D029A4864F00C92E29 /* SongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5CF29A4864F00C92E29 /* SongView.swift */; };
+		3B00C5D329A4AF7700C92E29 /* SkeletonUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3B00C5D229A4AF7700C92E29 /* SkeletonUI */; };
+		3B00C5D529A4B76B00C92E29 /* EmptySongsListGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5D429A4B76B00C92E29 /* EmptySongsListGroup.swift */; };
+		3B00C5D729A4B9D100C92E29 /* SongsLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B00C5D629A4B9D100C92E29 /* SongsLoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,7 +106,7 @@
 		3B00C5A929A337DE00C92E29 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		3B00C5AC29A33B2200C92E29 /* ListView+ConvenienceInitializers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListView+ConvenienceInitializers.swift"; sourceTree = "<group>"; };
 		3B00C5AE29A3427400C92E29 /* ListViewPresentationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewPresentationStyle.swift; sourceTree = "<group>"; };
-		3B00C5B129A3664D00C92E29 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		3B00C5B129A3664D00C92E29 /* BooksLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksLoadingView.swift; sourceTree = "<group>"; };
 		3B00C5B329A3668100C92E29 /* GeneralErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralErrorView.swift; sourceTree = "<group>"; };
 		3B00C5B529A366F900C92E29 /* NothingFoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NothingFoundView.swift; sourceTree = "<group>"; };
 		3B00C5B729A3675400C92E29 /* BookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookView.swift; sourceTree = "<group>"; };
@@ -116,8 +119,10 @@
 		3B00C5C629A47F2800C92E29 /* SectionedSongsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionedSongsListViewModel.swift; sourceTree = "<group>"; };
 		3B00C5C929A4803A00C92E29 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		3B00C5CB29A4809100C92E29 /* SongsListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsListSection.swift; sourceTree = "<group>"; };
-		3B00C5CD29A4840100C92E29 /* EmptyListGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListGroup.swift; sourceTree = "<group>"; };
+		3B00C5CD29A4840100C92E29 /* EmptyBooksListGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyBooksListGroup.swift; sourceTree = "<group>"; };
 		3B00C5CF29A4864F00C92E29 /* SongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongView.swift; sourceTree = "<group>"; };
+		3B00C5D429A4B76B00C92E29 /* EmptySongsListGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySongsListGroup.swift; sourceTree = "<group>"; };
+		3B00C5D629A4B9D100C92E29 /* SongsLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsLoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B00C5D329A4AF7700C92E29 /* SkeletonUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,13 +360,15 @@
 		3B00C5B029A3662100C92E29 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				3B00C5B129A3664D00C92E29 /* LoadingView.swift */,
+				3B00C5B129A3664D00C92E29 /* BooksLoadingView.swift */,
+				3B00C5D629A4B9D100C92E29 /* SongsLoadingView.swift */,
 				3B00C5B329A3668100C92E29 /* GeneralErrorView.swift */,
 				3B00C5B529A366F900C92E29 /* NothingFoundView.swift */,
 				3B00C5B729A3675400C92E29 /* BookView.swift */,
 				3B00C5CF29A4864F00C92E29 /* SongView.swift */,
 				3B00C5B929A378F000C92E29 /* LoadMoreView.swift */,
-				3B00C5CD29A4840100C92E29 /* EmptyListGroup.swift */,
+				3B00C5CD29A4840100C92E29 /* EmptyBooksListGroup.swift */,
+				3B00C5D429A4B76B00C92E29 /* EmptySongsListGroup.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -398,6 +406,9 @@
 			dependencies = (
 			);
 			name = RepositoryTests;
+			packageProductDependencies = (
+				3B00C5D229A4AF7700C92E29 /* SkeletonUI */,
+			);
 			productName = RepositoryTests;
 			productReference = 3B00C53F299F31C200C92E29 /* RepositoryTests.app */;
 			productType = "com.apple.product-type.application";
@@ -470,6 +481,9 @@
 				Base,
 			);
 			mainGroup = 3B00C536299F31C200C92E29;
+			packageReferences = (
+				3B00C5D129A4AF7700C92E29 /* XCRemoteSwiftPackageReference "SkeletonUI" */,
+			);
 			productRefGroup = 3B00C540299F31C200C92E29 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -518,11 +532,12 @@
 				3B00C57F299F321200C92E29 /* SectionedListViewModel.swift in Sources */,
 				3B00C545299F31C200C92E29 /* ContentView.swift in Sources */,
 				3B00C59E299F617900C92E29 /* SectionedBooksListViewModel.swift in Sources */,
-				3B00C5B229A3664D00C92E29 /* LoadingView.swift in Sources */,
+				3B00C5B229A3664D00C92E29 /* BooksLoadingView.swift in Sources */,
 				3B00C598299F3A8500C92E29 /* PaginatedBooksRepository.swift in Sources */,
 				3B00C5AF29A3427400C92E29 /* ListViewPresentationStyle.swift in Sources */,
 				3B00C582299F321200C92E29 /* LoadingState.swift in Sources */,
 				3B00C5B829A3675400C92E29 /* BookView.swift in Sources */,
+				3B00C5D529A4B76B00C92E29 /* EmptySongsListGroup.swift in Sources */,
 				3B00C57D299F321200C92E29 /* PaginationStrategy.swift in Sources */,
 				3B00C5C729A47F2800C92E29 /* SectionedSongsListViewModel.swift in Sources */,
 				3B00C5CC29A4809100C92E29 /* SongsListSection.swift in Sources */,
@@ -540,6 +555,7 @@
 				3B00C580299F321200C92E29 /* ListViewModel.swift in Sources */,
 				3B00C592299F353F00C92E29 /* SingleEntityListView.swift in Sources */,
 				3B00C5C429A47E8E00C92E29 /* SongsAPI.swift in Sources */,
+				3B00C5D729A4B9D100C92E29 /* SongsLoadingView.swift in Sources */,
 				3B00C586299F324F00C92E29 /* Book.swift in Sources */,
 				3B00C5B429A3668100C92E29 /* GeneralErrorView.swift in Sources */,
 				3B00C5D029A4864F00C92E29 /* SongView.swift in Sources */,
@@ -547,7 +563,7 @@
 				3B00C57E299F321200C92E29 /* ItemViewModel.swift in Sources */,
 				3B00C581299F321200C92E29 /* PaginatedListViewModel.swift in Sources */,
 				3B00C5CA29A4803A00C92E29 /* Array+Extensions.swift in Sources */,
-				3B00C5CE29A4840100C92E29 /* EmptyListGroup.swift in Sources */,
+				3B00C5CE29A4840100C92E29 /* EmptyBooksListGroup.swift in Sources */,
 				3B00C5BE29A47C5B00C92E29 /* MultipleEntitiesListViewModel.swift in Sources */,
 				3B00C5A329A1DEC700C92E29 /* BooksAPI.swift in Sources */,
 				3B00C5BA29A378F000C92E29 /* LoadMoreView.swift in Sources */,
@@ -875,6 +891,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3B00C5D129A4AF7700C92E29 /* XCRemoteSwiftPackageReference "SkeletonUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CSolanaM/SkeletonUI.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3B00C5D229A4AF7700C92E29 /* SkeletonUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3B00C5D129A4AF7700C92E29 /* XCRemoteSwiftPackageReference "SkeletonUI" */;
+			productName = SkeletonUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3B00C537299F31C200C92E29 /* Project object */;
 }

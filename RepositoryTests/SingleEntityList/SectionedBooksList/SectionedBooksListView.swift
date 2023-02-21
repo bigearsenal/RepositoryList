@@ -17,9 +17,11 @@ struct SectionedBooksListView: View {
         ListView(
             viewModel: viewModel,
             presentationStyle: .list,
-            emptyLoadingView: {
+            emptyBooksLoadingView: {
                 // Skeleton may appear here
-                LoadingView()
+                List {
+                    BooksLoadingView()
+                }
             },
             emptyErrorView: { _ in
                 // Error like network error may appear here

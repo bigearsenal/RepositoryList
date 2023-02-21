@@ -6,7 +6,7 @@ extension ListView where LoadMoreView == EmptyView  {
     /// PaginatedListView's initializer
     /// - Parameters:
     ///   - viewModel: ViewModel to handle data flow
-    ///   - emptyLoadingView: View when list is empty and is loading (ProgressView or Skeleton)
+    ///   - emptyBooksLoadingView: View when list is empty and is loading (ProgressView or Skeleton)
     ///   - emptyErrorView: View when list is empty and error occured
     ///   - emptyLoadedView: View when list is loaded and have no data
     ///   - itemView: View of an Item on the list
@@ -14,7 +14,7 @@ extension ListView where LoadMoreView == EmptyView  {
     init(
         viewModel: ViewModel,
         presentationStyle: ListViewPresentationStyle = .lazyVStack,
-        @ViewBuilder emptyLoadingView: @escaping () -> EmptyLoadingView,
+        @ViewBuilder emptyBooksLoadingView: @escaping () -> EmptyBooksLoadingView,
         @ViewBuilder emptyErrorView: @escaping (Error) -> EmptyErrorView,
         @ViewBuilder emptyLoadedView: @escaping () -> EmptyLoadedView,
         @ViewBuilder contentView: @escaping () -> ContentView
@@ -22,7 +22,7 @@ extension ListView where LoadMoreView == EmptyView  {
         self.init(
             viewModel: viewModel,
             presentationStyle: presentationStyle,
-            emptyLoadingView: emptyLoadingView,
+            emptyBooksLoadingView: emptyBooksLoadingView,
             emptyErrorView: emptyErrorView,
             emptyLoadedView: emptyLoadedView,
             contentView: contentView,

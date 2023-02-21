@@ -19,9 +19,11 @@ struct OnePagedBooksListView: View {
         ListView(
             viewModel: viewModel,
             presentationStyle: selectedPresentationStyle,
-            emptyLoadingView: {
+            emptyBooksLoadingView: {
                 // Skeleton may appear here
-                LoadingView()
+                List {
+                    BooksLoadingView()
+                }
             },
             emptyErrorView: { _ in
                 // Error like network error may appear here

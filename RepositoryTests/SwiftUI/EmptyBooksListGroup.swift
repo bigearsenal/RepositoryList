@@ -1,5 +1,5 @@
 //
-//  EmptyListGroup.swift
+//  EmptyBooksListGroup.swift
 //  RepositoryTests
 //
 //  Created by Chung Tran on 21/02/2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EmptyListGroup: View {
+struct EmptyBooksListGroup: View {
     let status: ListLoadingState.Status
     let reloadAction: () async -> Void
     
@@ -16,7 +16,9 @@ struct EmptyListGroup: View {
             Spacer()
             switch status {
             case .loading:
-                LoadingView()
+                VStack {
+                    BooksLoadingView()
+                }
             case .loaded:
                 NothingFoundView {
                     Task {
@@ -36,8 +38,8 @@ struct EmptyListGroup: View {
     }
 }
 
-struct EmptyListGroup_Previews: PreviewProvider {
+struct EmptyBooksListGroup_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyListGroup(status: .loaded) {}
+        EmptyBooksListGroup(status: .loaded) {}
     }
 }

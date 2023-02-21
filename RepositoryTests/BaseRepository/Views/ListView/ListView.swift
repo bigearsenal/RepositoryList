@@ -5,7 +5,7 @@ import SwiftUI
 struct ListView<
     Repository: AnyListRepository,
     ViewModel: ListViewModel<Repository>,
-    EmptyLoadingView: View,
+    EmptyBooksLoadingView: View,
     EmptyErrorView: View,
     EmptyLoadedView: View,
     ContentView: View,
@@ -20,7 +20,7 @@ struct ListView<
     let presentationStyle: ListViewPresentationStyle
     
     /// View to handle state when list is empty and is loading, for example ProgressView or Skeleton
-    var emptyLoadingView: () -> EmptyLoadingView
+    var emptyBooksLoadingView: () -> EmptyBooksLoadingView
     
     /// View to handle state when list is empty and error occurred at the first time loading
     var emptyErrorView: (Error) -> EmptyErrorView
@@ -40,7 +40,7 @@ struct ListView<
     /// - Parameters:
     ///   - viewModel: ViewModel to handle data flow
     ///   - presentationStyle: Presenation type of the list
-    ///   - emptyLoadingView: View when list is empty and is loading (ProgressView or Skeleton)
+    ///   - emptyBooksLoadingView: View when list is empty and is loading (ProgressView or Skeleton)
     ///   - emptyErrorView: View when list is empty and error occured
     ///   - emptyLoadedView: View when list is loaded and have no data
     ///   - contentView: Content view of the list
@@ -48,7 +48,7 @@ struct ListView<
     init(
         viewModel: ViewModel,
         presentationStyle: ListViewPresentationStyle = .lazyVStack,
-        @ViewBuilder emptyLoadingView: @escaping () -> EmptyLoadingView,
+        @ViewBuilder emptyBooksLoadingView: @escaping () -> EmptyBooksLoadingView,
         @ViewBuilder emptyErrorView: @escaping (Error) -> EmptyErrorView,
         @ViewBuilder emptyLoadedView: @escaping () -> EmptyLoadedView,
         @ViewBuilder contentView: @escaping () -> ContentView,
@@ -56,7 +56,7 @@ struct ListView<
     ) {
         self.viewModel = viewModel
         self.presentationStyle = presentationStyle
-        self.emptyLoadingView = emptyLoadingView
+        self.emptyBooksLoadingView = emptyBooksLoadingView
         self.emptyErrorView = emptyErrorView
         self.emptyLoadedView = emptyLoadedView
         self.contentView = contentView
@@ -75,7 +75,7 @@ struct ListView<
                 
                 switch status {
                 case .loading:
-                    emptyLoadingView()
+                    emptyBooksLoadingView()
                 case .loaded:
                     emptyLoadedView()
                 case .error(let error):
