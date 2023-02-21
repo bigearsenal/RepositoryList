@@ -32,7 +32,7 @@ struct MultipleEntitiesListView: View {
         }
         .refreshable {
             Task {
-                await songsViewModel.reload()
+                await songsViewModel.refresh()
             }
             await booksViewModel.refresh()
         }
