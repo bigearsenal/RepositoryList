@@ -19,6 +19,12 @@ struct MultipleEntitiesListView: View {
             // Songs
             songs
         }
+        .refreshable {
+            await(
+                booksViewModel.reload(),
+                songsViewModel.reload()
+            )
+        }
     }
     
     // MARK: - Books
@@ -77,16 +83,37 @@ struct MultipleEntitiesListView: View {
                 .frame(height: 200)
             case .nonEmpty(let loadMoreStatus):
                 Section(header: Text("Songs")) {
-                    ScrollView(.horizontal) {
+                    ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack {
                             ForEach(songsViewModel.sections, id: \.id) {section in
                                 ForEach(section.items) { song in
                                     SongView(song: song)
                                 }
                             }
+                            
+                            switch loadMoreStatus {
+                            case .loading:
+                                LoadingView()
+                                    .frame(width: 120, height: 120)
+                                    .task {
+                                        await songsViewModel.fetchNext()
+                                    }
+                            case .reachedEndOfList:
+                                EmptyView()
+                            case .error:
+                                Text("Error")
+                                    .foregroundColor(.red)
+                                    .onTapGesture {
+                                        Task {
+                                            await songsViewModel.fetchNext()
+                                        }
+                                    }
+                            }
                         }
                     }
-                    .frame(height: 100)
+                    .frame(height: 120)
+                    .listRowInsets(EdgeInsets())
+                    .listRowBackground(Color.clear)
                 }
             }
         }

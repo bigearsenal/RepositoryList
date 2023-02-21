@@ -10,11 +10,11 @@ import SwiftUI
 struct SongView: View {
     let song: Song
     var body: some View {
-        ZStack(alignment: .bottomTrailing) {
-            Image(systemName: song.systemImage)
-                .resizable()
-                .frame(width: 100, height: 100)
-        }
+        RoundedRectangle(cornerRadius: 10)
+            .foregroundColor(.white)
+            .overlay(
+                Text(song.id)
+            )
     }
 }
 
